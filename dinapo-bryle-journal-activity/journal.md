@@ -1,5 +1,11 @@
-## Journal Entry - June 4, 2025
+6/4/2025
+yes a lot
+how to delete or push
 
-**What I learned:** I learned how to fork a repository and push changes using Git.
+6/4/2025
+yes 
+how to commuit
 
-**Question:** What is the difference between `origin` and `upstream` in Git?
+6/4/2025
+no
+how to  fix an eror on commiting
