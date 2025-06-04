@@ -1,7 +1,7 @@
 6/4/2025
 
 What I Learned today:
-Today I learned how to (properly) do the activity and see how exactly this might work now
+Today I learned that on my computer, git commit can only save and submit one instance at a time as indicated by the off numbering scheme.
 
 What I'm still confused about:
-I would like to know the difference between commiting when only one file is added into commit versus multiple, is this merely an inefficient way for this? (If this gets through that would confirm I have been doing things inefficiently.)
+I would like to know if there is a more efficient way to send multiple of these at once, or perhaps a way to send multiple of these types of files at once.
