@@ -15,3 +15,13 @@ I learned about the importance of branching and how to use branches to work on f
 
 One question or confusion I still have:
 What’s the practical difference between git merge and git rebase, and when should I prefer one over the other in a team project?
+
+A date:
+June 9, 2025
+
+What I learned in Git:
+I learned how to use .gitignore files to exclude certain files or directories from being tracked by Git. This is useful for keeping sensitive information or build artifacts out of the repository and maintaining a clean version history.
+
+One question or confusion I still have:
+If I accidentally committed sensitive files before adding them to .gitignore, what’s the best way to remove them completely from the Git history?
+
