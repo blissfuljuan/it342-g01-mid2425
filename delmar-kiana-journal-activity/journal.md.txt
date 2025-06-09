@@ -1,0 +1,9 @@
+Git Journal
+
+06/09/2025
+
+What I learned today:
+I learned how to fork, and commit using cmd. I also learned how to fork from a repository.
+
+One question or confusion I still have:
+Fortunately, I do not have any confusion or question yet for this activity.
