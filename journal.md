@@ -10,10 +10,10 @@ I'm still unsure when to use the staging area vs committing directly. Also, how 
 June 4, 2025
 
 **What I learned today:**  
-I learned how to check my current repo status using `git status`. It helps me see which files are staged, modified, or untracked.
+I learned how to check the repo status with `git status`, and now I understand the difference between staged and committed files.
 
 **What I'm still confused about:**  
-I’m still not fully clear on the difference between `git fetch` and `git pull`.
+How to undo a commit without deleting local changes.
 
 June 4, 2025
 
