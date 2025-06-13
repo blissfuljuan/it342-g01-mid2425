@@ -1,7 +1,7 @@
-6/4/2025
+6/13/2025
 
 What I Learned today:
-Today I learned that on my computer, git commit can only save and submit one instance at a time as indicated by the off numbering scheme.
+Today I learned how to do various things incorporating IntelliJ, GitHub, and Google as well as how to obtain client IDs, client secrets, and about details regarding controllers and Security functions.
 
 What I'm still confused about:
-I would like to know if there is a more efficient way to send multiple of these at once, or perhaps a way to send multiple of these types of files at once.
+How do I remember all of this information at once and incorporate it to do it at the same time? Because my weakness is minor coding mistakes.
