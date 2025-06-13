@@ -29,3 +29,9 @@ I learned when you run git reset --hard HEAD
 How to undo a commit or remove 
 files from the staging area.
 
+##Fourth Journal Entry
+**What I learned today:**
+About Oauth2 and Inegration of Github and Google in login
+
+**What I'm still confused about:**
+About Facebook
