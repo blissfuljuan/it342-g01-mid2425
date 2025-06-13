@@ -17,3 +17,10 @@ I'm a bit confused about refs but I do understand a little bit.
 I learned how to branch a repository in git and it's very useful, especially when I want to code and don't want to change anything in main
 
 I still struggle with changing and navigating the head, it's hard to visualize it without the visualization from learngitbranching
+
+
+6/13/2025
+
+Today I learned how to setup the google and github OAuth2 which is needed for this project, it's actually pretty interesting how it is setup since it's relatively easy once you know what to do.
+
+I struggled with the security configuration part, especially with how long the code is and confused with the lambda code part as well, but I will definitely try to learn it.
