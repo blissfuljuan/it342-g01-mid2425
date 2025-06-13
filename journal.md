@@ -25,3 +25,7 @@ I learned how to use .gitignore files to exclude certain files or directories fr
 One question or confusion I still have:
 If I accidentally committed sensitive files before adding them to .gitignore, what’s the best way to remove them completely from the Git history?
 
+
+June 13
+
+I learned how to intgerate Oauth2 into my springboot app.
