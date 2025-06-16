@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile - Google Contacts Integration</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="profile-card">
+                <h1>Welcome, <span th:text="${user.displayName}">User</span></h1>
+                <div class="user-info">
+                    <div class="info-item">
+                        <span class="label">Email:</span>
+                        <span class="value" th:text="${user.email}">email@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">First Name:</span>
+                        <span class="value" th:text="${user.firstName}">First</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Last Name:</span>
+                        <span class="value" th:text="${user.lastName}">Last</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <a th:href="@{/contacts}" class="action-button">View Contacts</a>
+                    <a th:href="@{/logout}" class="action-button secondary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
