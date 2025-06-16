@@ -15,3 +15,11 @@ Utilization of OAuth2 for projects.
 
 What I'm still confused about:
 How to consistently use them.
+
+# June 16, 2025
+
+What I Learned today:
+Thymeleaf and Importing Google Contacts via API.
+
+What I'm still confused about:
+How to properly import the contact list from Google Contacts.
