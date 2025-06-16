@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Profile | Google Contacts</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #111;
+            color: #f1f1f1;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .profile-box {
+            background-color: #1c1c1c;
+            border: 2px solid #ff6600;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: auto;
+            margin-top: 60px;
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
+        }
+
+        .profile-box h1 {
+            color: #ff6600;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-box p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        .btn-custom {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            transition: 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #e65c00;
+        }
+    </style>
+</head>
+<body>
+<div class="profile-box">
+    <h1>My Profile</h1>
+    <p><strong>Display Name:</strong> <span th:text="${user.displayName}"></span></p>
+    <p><strong>First Name:</strong> <span th:text="${user.firstName}"></span></p>
+    <p><strong>Last Name:</strong> <span th:text="${user.lastName}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+
+    <div class="mt-4 text-center">
+        <a href="/contacts" class="btn btn-custom">Contacts</a>
+        <a href="/logout" class="btn btn-custom">Logout</a>
+    </div>
+</div>
+</body>
+</html>

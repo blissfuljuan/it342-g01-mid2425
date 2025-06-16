@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Google Contacts</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        h2 {
+            color: #ff6600;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-custom {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 10px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .btn-custom:hover {
+            background-color: #e65c00;
+            color: white;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            background-color: #1c1c1c;
+            color: #fff;
+            border-color: #ff6600;
+        }
+
+        thead {
+            background-color: #ff6600;
+            color: #000;
+        }
+
+        a, button {
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        function back() {
+            window.location.href="/user-info";
+        }
+
+        function addContact() {
+            window.location.href="/addContact";
+        }
+    </script>
+</head>
+<body class="container mt-5">
+<h2>Google Contacts</h2>
+
+<div class="btn-group">
+    <button class="btn-custom" onclick="back()">← Back</button>
+    <button class="btn-custom" onclick="addContact()">+ Contact</button>
+    <a href="/logout" class="btn-custom">Logout</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Emails</th>
+        <th>Phones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contact : ${contacts}">
+        <td th:text="${contact.name}"></td>
+        <td>
+            <ul>
+                <li th:each="email : ${contact.emails}" th:text="${email}"></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="phone : ${contact.phones}" th:text="${phone}"></li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
