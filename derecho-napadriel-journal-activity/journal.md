@@ -7,3 +7,7 @@ I'm a bit familliar with git and this has been a good refresher.
 
 # More comments:  
 Excited to learn more.  
+
+June 19, 2025  
+# Journal Entry:  
+Learned how to integrate google contacts in an app.
