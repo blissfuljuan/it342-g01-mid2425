@@ -23,10 +23,19 @@ I now understand how to fork repositories and push to my own forked version.
 **What I'm still confused about:**  
 How do I undo a commit without deleting my changes?
 
-June 13, 2024
+June 13, 2025
 
 **What I learned today:**  
 I now understand how google and github integration works
 
 **What I'm still confused about:**  
 Im still a bit confused how to integrate github through google using security
+
+June 19, 2025
+
+**What I learned today:**  
+I learned the different types of integration and requirement analysis of a system
+
+**What I'm still confused about:**  
+How do you integrate those different integration architectures and making them scalable towards other systems?
+
