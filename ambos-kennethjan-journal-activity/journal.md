@@ -24,3 +24,10 @@ I still struggle with changing and navigating the head, it's hard to visualize i
 Today I learned how to setup the google and github OAuth2 which is needed for this project, it's actually pretty interesting how it is setup since it's relatively easy once you know what to do.
 
 I struggled with the security configuration part, especially with how long the code is and confused with the lambda code part as well, but I will definitely try to learn it.
+
+
+6/14/2025
+
+I practiced using git cherry-pick today. It’s a powerful tool that allows me to apply a single commit from one branch onto another. Initially, I was confused about the hash references, but once I understood how to identify the right commit with git log, it became much clearer.
+
+I still get a bit lost when conflicts arise during cherry-picking and don’t always know the safest way to resolve them.
