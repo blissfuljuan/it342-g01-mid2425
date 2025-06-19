@@ -14,27 +14,13 @@ import java.util.Map;
 public class UserController {
 
     @GetMapping("/user-info")
-    public String userInfo(@AuthenticationPrincipal OAuth2User oAuth2User) {
-        String fullName = (String) oAuth2User.getAttribute("name");
-        String givenName = (String) oAuth2User.getAttribute("given_name");
-        String familyName = (String) oAuth2User.getAttribute("family_name");
-        String email = (String) oAuth2User.getAttribute("email");
+    public String getUserInfo(@AuthenticationPrincipal OAuth2User principal, Model model) {
+        model.addAttribute("user", principal.getAttributes());
+        return "user-info";
+    }
 
-        return "<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <title>User Info</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <h2>User Profile</h2>\n" +
-                "    <p><strong>Full Name:</strong> " + fullName + "</p>\n" +
-                "    <p><strong>Given Name:</strong> " + givenName + "</p>\n" +
-                "    <p><strong>Family Name:</strong> " + familyName + "</p>\n" +
-                "    <p><strong>Email:</strong> " + email + "</p>\n" +
-                "    <form action=\"/logout\" method=\"post\">\n" +
-                "        <button type=\"submit\">contacts</button>\n" +
-                "    </form>\n" +
-                "</body>\n" +
-                "</html>";
+    @GetMapping("/")
+    public String print() {
+        return "home";
     }
 }
