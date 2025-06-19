@@ -24,12 +24,87 @@ What I'm still confused about: I was confused on how to delete things
 
 
 
+6/5/2025 (to my best recollection)
+
+What I Learned today: I (believe) I sat in discussion with sir Amparo and he iterated upon Systems Integrationt
+
+What I'm still confused about: I was confused on the intricacies of Centralized Data Management
+
+
+
+6/6/2025 (to my best recollection)
+
+What I Learned today: I mainly learned about some basic git functions (unclear)
+
+What I'm still confused about: I was confused on how to apply them and remember all of them
+
+
+
+6/7/2025 (to my best recollection)
+
+What I Learned today: I mainly retreaded old ground
+
+What I'm still confused about: same as yesterday
+
+
+
+6/8/2025 (to my best recollection)
+
+What I Learned today: I rested
+
+What I'm still confused about: same as yesterday
+
+
+
+6/9/2025 (to my best recollection)
+
+What I Learned today: I mainly learned about SDLC
+
+What I'm still confused about: I was confused regarding the design pattterns and how to memorize that and the principles
+
+
+
+6/10/2025 (to my best recollection)
+
+What I Learned today: I learned about parts of SDLC
+
+What I'm still confused about: I was confused on System architecture, last I remembered 
+
+
+
+6/11/2025 (to my best recollection)
+
+What I Learned today: I learned more about Git Branching the basics of Git
+
+What I'm still confused about: I was confused on how to remember all of the information I was given.
+
+
+6/12/2025 (to my best recollection)
+
+What I Learned today: I mainly used this day to rest.
+
+What I'm still confused about: Same as yesterday.
+
+
 6/13/2025
 
 What I Learned today: Today I learned how to do various things incorporating IntelliJ, GitHub, and Google as well as how to obtain client IDs, client secrets, and about details regarding controllers and Security functions.
 
 What I'm still confused about: How do I remember all of this information at once and incorporate it to do it at the same time? Because my weakness is minor coding mistakes.
 
+
+6/14/2025 (to my best recollection)
+
+What I Learned today: I had to go out for most of the day, during which I mostly read up on my notes
+
+What I'm still confused about: How do I remember all of this information at once and incorporate it to do it at the same time? Because my weakness is minor coding mistakes.
+
+
+6/15/2025 (to my best recollection)
+
+What I Learned today: Same as before
+
+What I'm still confused about: Same as before
 
 
 6/16/2025
