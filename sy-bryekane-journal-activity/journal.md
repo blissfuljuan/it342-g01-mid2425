@@ -114,6 +114,12 @@ What I Learned today: I learned about the basics outlined in the assignment
 What I'm still confused about: I am still confused about the rest of the stuff in the assignment
 
 
+6/17/2025
+
+What I Learned today: Today I took the midterm exam and reviewed on it. I learned that I was not exactly fully prepared.
+
+What I'm still confused about: Why am I still so mediocre?
+
 
 6/18/2025
 
@@ -123,12 +129,33 @@ What I'm still confused about: I am still confused as to how to do the assignmen
 
 
 
-6/19/2025
+## [Date: 06-19-2025]
 
 What I Learned today: Today I learned about some of the flaws of my current approach and what sync fork on github entails. I also learned how exactly to delete things (overwriting them) and learned about the various forms of System Integration and the SILC.
 
 What I'm still confused about: I get confused about how exactly to utilize all the commands, most specifically git commit and git pull when it comes to downloading files from the repository to my own computer. Also I genuinely have no clue how to 
 
 
+## [Date: 06-20-2025]
+
+**1. What did I accomplish yesterday?**
+- I accomplished sorting out my stuff for Github and how it works and learned about System Integration and SILC.
+
+**2. What will I do today?**
+- Work on my Google contact assignment
+
+**3. Any blockers or challenges?**
+- Lack of sources telling me how to use Access Token and lack of time during the class period
+
+## [Date: 06-21-2025]
+
+**1. What did I accomplish yesterday?**
+- I worked on my Google contact assignment and accomplished notable progress
+
+**2. What will I do today?**
+- Attempt to finish my Google contact assignment
+
+**3. Any blockers or challenges?**
+- 
 
 (DO NOT DELETE ENTRIES, ADD MORE)
