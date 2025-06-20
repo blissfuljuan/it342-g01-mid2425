@@ -43,3 +43,11 @@ retention
  - Preparing myself to do CRUD operations for the google contacts.
 3. Any blockers or challenges?
  - I failed to handle the request in the frontend resulting in a succesful request and no display in the frontend. 
+
+  06/20/25
+1. What did I accomplish yesterday?
+ - Gained a good start on the crud operations for google contacts.
+2. What will I do today?
+ - Preparing for the final project on monday.
+3. Any blockers or challenges?
+ - Need more research for the @AuthenticationPrinciple. Because AI recommendation is not related to objective currently. 
