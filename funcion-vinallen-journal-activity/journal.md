@@ -17,3 +17,8 @@ June 16, 2025
 Explored how to create and switch branches using git branch and git checkout.
 
 Still figuring out how merging works and what to do when there are conflicts.
+
+June 20, 2025
+Started working with git merge today. Got a better understanding of how it combines branches, but I ran into a conflict during the merge. Had to manually resolve it. I think I’m starting to get the hang of it, but it’s still a bit tricky.
+
+Also, I learned that git pull is a combination of git fetch followed by a git merge. That cleared up some confusion!
