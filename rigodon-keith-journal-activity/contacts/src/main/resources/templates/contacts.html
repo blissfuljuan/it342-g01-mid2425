@@ -23,10 +23,9 @@
             color: white;
             border: none;
             padding: 10px 20px;
-            text-decoration: none;
-            margin: 10px;
-            display: inline-block;
+            margin: 5px;
             border-radius: 5px;
+            text-decoration: none;
         }
 
         .btn-custom:hover {
@@ -34,15 +33,13 @@
             color: white;
         }
 
-        .btn-group {
-            text-align: center;
-            margin-bottom: 20px;
+        .btn-sm {
+            margin: 2px;
         }
 
         table {
             background-color: #1c1c1c;
             color: #fff;
-            border-color: #ff6600;
         }
 
         thead {
@@ -50,49 +47,49 @@
             color: #000;
         }
 
-        a, button {
-            text-decoration: none;
+        ul {
+            padding-left: 15px;
+            margin: 0;
         }
     </style>
-    <script>
-        function back() {
-            window.location.href="/user-info";
-        }
-
-        function addContact() {
-            window.location.href="/addContact";
-        }
-    </script>
 </head>
 <body class="container mt-5">
 <h2>Google Contacts</h2>
 
-<div class="btn-group">
-    <button class="btn-custom" onclick="back()">← Back</button>
-    <button class="btn-custom" onclick="addContact()">+ Contact</button>
+<div class="text-center mb-4">
+    <a href="/contacts/add" class="btn-custom">+ Add Contact</a>
+    <a href="/user-info" class="btn-custom">← Back</a>
     <a href="/logout" class="btn-custom">Logout</a>
 </div>
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped text-center">
     <thead>
     <tr>
         <th>Name</th>
         <th>Emails</th>
         <th>Phones</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="contact : ${contacts}">
-        <td th:text="${contact.name}"></td>
+        <td th:text="${contact.name}">Name</td>
         <td>
             <ul>
-                <li th:each="email : ${contact.emails}" th:text="${email}"></li>
+                <li th:each="email : ${contact.emails}" th:text="${email}">email@example.com</li>
             </ul>
         </td>
         <td>
             <ul>
-                <li th:each="phone : ${contact.phones}" th:text="${phone}"></li>
+                <li th:each="phone : ${contact.phones}" th:text="${phone}">+63...</li>
             </ul>
+        </td>
+        <td>
+            <a th:href="@{'/contacts/edit'(resourceName=${contact.resourceName})}"
+               class="btn btn-warning btn-sm">Edit</a>
+            <a th:href="@{'/contacts/delete'(resourceName=${contact.resourceName})}"
+               class="btn btn-danger btn-sm"
+               onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
         </td>
     </tr>
     </tbody>
