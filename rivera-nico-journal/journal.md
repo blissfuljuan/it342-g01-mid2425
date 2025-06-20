@@ -80,4 +80,4 @@ How to refresh the token automatically or extend its validity, and how to secure
 - Implement Google Contacts API integration in our Spring Boot app and test fetching contact data.
 
 **3. Any blockers or challenges?**  
-- Uncertain how to manage token refresh cycles and securely store client secrets in production.
+- Uncertain failed to commit my actual into github sht.
