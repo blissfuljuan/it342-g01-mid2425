@@ -43,4 +43,31 @@ public class ContactsController {
         contactsService.addContact(token, name, email, phone);
         return "redirect:/contacts";
     }
-} 
+
+    @GetMapping("/edit")
+    public String showEditForm(@RequestParam String resourceName, Model model, OAuth2AuthenticationToken token) {
+        // You'll need to either store resourceName in your Contact model or fetch it here.
+        // For simplicity, pass it back with a form
+        model.addAttribute("resourceName", resourceName);
+        return "editContact"; // create this HTML form
+    }
+
+    @PostMapping("/edit")
+    public String updateContact(
+            OAuth2AuthenticationToken token,
+            @RequestParam String resourceName,
+            @RequestParam String name,
+            @RequestParam(required = false) List<String> emails,
+            @RequestParam(required = false) List<String> phones) {
+
+        contactsService.updateContact(token, resourceName, name, emails, phones);
+        return "redirect:/contacts";
+    }
+
+    @GetMapping("/delete")
+    public String deleteContact(@RequestParam String resourceName, OAuth2AuthenticationToken token) {
+        contactsService.deleteContact(token, resourceName);
+        return "redirect:/contacts";
+    }
+
+}

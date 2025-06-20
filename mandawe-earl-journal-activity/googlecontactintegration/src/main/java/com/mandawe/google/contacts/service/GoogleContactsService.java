@@ -70,16 +70,29 @@ public class GoogleContactsService {
         List<Contact> contactsList = new ArrayList<>();
         List<Person> persons = response.getConnections();
 
-        if (response != null) {
-            for (Map<String, Object> person : persons) {
-                System.out.println("Person: " + person);
-                String name = extractName(person);
-                List<String> emails = extractEmails(person);
-                List<String> phones = extractPhones(person);
+        if (persons != null) {
+            for (Person person : persons) {
+                String name = (person.getNames() != null && !person.getNames().isEmpty())
+                        ? person.getNames().get(0).getDisplayName()
+                        : "No Name";
+
+                List<String> emails = new ArrayList<>();
+                if (person.getEmailAddresses() != null) {
+                    for (EmailAddress email : person.getEmailAddresses()) {
+                        emails.add(email.getValue());
+                    }
+                }
+
+                List<String> phones = new ArrayList<>();
+                if (person.getPhoneNumbers() != null) {
+                    for (PhoneNumber phone : person.getPhoneNumbers()) {
+                        phones.add(phone.getValue());
+                    }
+                }
 
                 Contact contact = new Contact(name);
-                contact.setPhones(phones);
                 contact.setEmails(emails);
+                contact.setPhones(phones);
                 contactsList.add(contact);
             }
         }
@@ -129,7 +142,7 @@ public class GoogleContactsService {
 
             // Create new person
             Person person = new Person();
-            
+
             // Set name
             Name personName = new Name();
             personName.setGivenName(name);
@@ -152,4 +165,58 @@ public class GoogleContactsService {
             throw new RuntimeException("Failed to add contact", e);
         }
     }
-} 
+    public void updateContact(OAuth2AuthenticationToken token, String resourceName, String name, List<String> emails, List<String> phones) {
+        try {
+            final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+            OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient("google", token.getName());
+
+            if (client == null) throw new RuntimeException("OAuth2 client not found");
+
+            OAuth2AccessToken accessToken = client.getAccessToken();
+            GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken.getTokenValue());
+            peopleService = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).build();
+
+            Person person = new Person();
+            person.setNames(List.of(new Name().setGivenName(name)));
+
+            if (emails != null && !emails.isEmpty()) {
+                List<EmailAddress> emailList = emails.stream().map(e -> new EmailAddress().setValue(e)).toList();
+                person.setEmailAddresses(emailList);
+            }
+
+            if (phones != null && !phones.isEmpty()) {
+                List<PhoneNumber> phoneList = phones.stream().map(p -> new PhoneNumber().setValue(p)).toList();
+                person.setPhoneNumbers(phoneList);
+            }
+
+            peopleService.people().updateContact(resourceName, person)
+                    .setUpdatePersonFields("names,emailAddresses,phoneNumbers")
+                    .execute();
+
+        } catch (IOException | GeneralSecurityException e) {
+            throw new RuntimeException("Failed to update contact", e);
+        }
+    }
+
+    public void deleteContact(OAuth2AuthenticationToken token, String resourceName) {
+        try {
+            final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+            OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient("google", token.getName());
+
+            if (client == null) {
+                throw new RuntimeException("OAuth2 client not found");
+            }
+
+            OAuth2AccessToken accessToken = client.getAccessToken();
+            GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken.getTokenValue());
+            peopleService = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).build();
+
+            peopleService.people().deleteContact(resourceName).execute();
+
+        } catch (IOException | GeneralSecurityException e) {
+            throw new RuntimeException("Failed to delete contact", e);
+        }
+    }
+
+}
+

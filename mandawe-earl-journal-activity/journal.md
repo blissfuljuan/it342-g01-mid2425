@@ -18,3 +18,29 @@ no question as of now.
 
 **3. Any blockers or challenges?**
 - I had issues adding this journal entry since i used different laptop and I did it late.
+
+
+## June 19, 2025
+
+
+**1. What did I accomplish yesterday?**
+- diccused about different types of system inte.
+
+**2. What will I do today?**
+- the devirables.
+
+**3. Any blockers or challenges?**
+- none.
+
+
+## June 20, 2025
+
+
+**1. What did I accomplish yesterday?**
+- my google contact integration can CRUD.
+
+**2. What will I do today?**
+- the devirables.
+
+**3. Any blockers or challenges?**
+- none.
