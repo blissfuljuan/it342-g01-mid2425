@@ -31,3 +31,15 @@ I struggled with the security configuration part, especially with how long the c
 I practiced using git cherry-pick today. It’s a powerful tool that allows me to apply a single commit from one branch onto another. Initially, I was confused about the hash references, but once I understood how to identify the right commit with git log, it became much clearer.
 
 I still get a bit lost when conflicts arise during cherry-picking and don’t always know the safest way to resolve them.
+
+
+## [Date: 06-20-2025]
+
+**1. What did I accomplish yesterday?**
+- I learned a bit more about git, tried to learn rebase again to see if I could understand it now, but it's still hard for me to learn, especially keeping track.
+
+**2. What will I do today?**
+- What I will do and did do today is finish the google contacts activity, I have the functionality down, I just need to update the CSS and overall design of the page.
+
+**3. Any blockers or challenges?**
+- What challenged me today still was rebase, I will try to continue learning it because it is definitely helpful to me.
