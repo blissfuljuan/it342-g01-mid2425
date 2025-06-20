@@ -1,0 +1,10 @@
+June 4, 2025
+
+WHAT I LEARNED TODAY
+
+Today, I learned more about Git commands and have a better understanding of how they work, how to use them, and how to use them more effectively. I now have a stronger grasp of the basic commands and even discovered some new ones I hadn't used before.
+
+WHAT I'M STILL CONFUSED ABOUT	
+
+I previously made a mistake where one of my files disappeared from both my laptop and Git, with no history or backups, so I was never able to recover it. Is there a way to reverse something like that? I tried researching it, but I still don’t quite understand. It was like the file just vanished all of a sudden.
+
