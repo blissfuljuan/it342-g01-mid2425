@@ -29,3 +29,9 @@ If I accidentally committed sensitive files before adding them to .gitignore, wh
 June 13
 
 I learned how to intgerate Oauth2 into my springboot app.
+
+Date: 06-20-2025
+What I learn today:
+
+I learned how to integrate Google Contacts.
+
