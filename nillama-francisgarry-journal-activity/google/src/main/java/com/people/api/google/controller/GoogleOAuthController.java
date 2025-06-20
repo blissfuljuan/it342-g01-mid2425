@@ -26,7 +26,7 @@ public class GoogleOAuthController {
     }
 
     @GetMapping("/contacts")
-    public String getContactData(Model model, @AuthenticationPrincipal OAuth2AuthenticationToken authentication) {
+    public String getContactData( OAuth2AuthenticationToken authentication, Model model) {
         if (authentication == null) {
             return "redirect:/"; // Not logged in, redirect to home
         }
