@@ -23,61 +23,7 @@ import java.util.List;
 
 @SpringBootApplication
 public class GooglecontactsApplication {
-
-	private static final String APPLICATION_NAME = "Google People API Java Quickstart";
-	private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-	private static final String TOKENS_DIRECTORY_PATH = "tokens";
-	private static final List<String> SCOPES = Arrays.asList(PeopleServiceScopes.CONTACTS_READONLY);
-	private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
-
-	public static void main(String[] args) throws Exception {
+	public static void main(String args[]){
 		SpringApplication.run(GooglecontactsApplication.class, args);
-		fetchContacts();
-	}
-
-	private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
-		InputStream in = GooglecontactsApplication.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
-		if (in == null) {
-			throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
-		}
-		GoogleClientSecrets clientSecrets =
-				GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-
-		GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-				HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-				.setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
-				.setAccessType("offline")
-				.build();
-
-		return new com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp(
-				flow, new com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver())
-				.authorize("user");
-	}
-
-	private static void fetchContacts() throws IOException, GeneralSecurityException {
-		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-		PeopleService service = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-				.setApplicationName(APPLICATION_NAME)
-				.build();
-
-		ListConnectionsResponse response = service.people().connections()
-				.list("people/me")
-				.setPageSize(10)
-				.setPersonFields("names,emailAddresses,phoneNumbers")
-				.execute();
-
-		List<Person> connections = response.getConnections();
-		if (connections != null && !connections.isEmpty()) {
-			for (Person person : connections) {
-				List<Name> names = person.getNames();
-				if (names != null && !names.isEmpty()) {
-					System.out.println("Name: " + names.get(0).getDisplayName());
-				} else {
-					System.out.println("No names available for connection.");
-				}
-			}
-		} else {
-			System.out.println("No connections found.");
-		}
 	}
 }

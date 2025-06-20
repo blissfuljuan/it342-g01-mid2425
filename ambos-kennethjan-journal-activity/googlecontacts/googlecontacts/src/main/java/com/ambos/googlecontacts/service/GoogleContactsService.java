@@ -71,30 +71,25 @@ public class GoogleContactsService {
         try {
             PeopleService peopleService = createPeopleService();
 
-            // Create a new Person object
             Person newPerson = new Person();
 
-            // Set the name
             Name name = new Name();
             name.setGivenName(givenName);
             name.setFamilyName(familyName);
             newPerson.setNames(List.of(name));
 
-            // Set the email
             if (email != null && !email.isEmpty()) {
                 EmailAddress emailAddress = new EmailAddress();
                 emailAddress.setValue(email);
                 newPerson.setEmailAddresses(List.of(emailAddress));
             }
 
-            // Set the phone number
             if (phoneNumber != null && !phoneNumber.isEmpty()) {
                 PhoneNumber phone = new PhoneNumber();
                 phone.setValue(phoneNumber);
                 newPerson.setPhoneNumbers(List.of(phone));
             }
 
-            // Create the contact
             Person createdPerson = peopleService.people().createContact(newPerson).execute();
             System.out.println("Created Contact ID: " + createdPerson.getResourceName()); // DEBUGGING CREATED CONTACT ID
             return createdPerson;
@@ -110,14 +105,12 @@ public class GoogleContactsService {
         try {
             PeopleService peopleService = createPeopleService();
 
-            // Step 1: Fetch the existing contact to get the etag
             Person existingContact = peopleService.people().get(resourceName)
                     .setPersonFields("names,emailAddresses,phoneNumbers")
                     .execute();
 
-            String etag = existingContact.getEtag(); // Extract etag
+            String etag = existingContact.getEtag();
 
-            // Step 2: Update the contact details
             List<Name> names = new ArrayList<>();
             names.add(new Name().setGivenName(givenName).setFamilyName(familyName));
 
@@ -131,14 +124,12 @@ public class GoogleContactsService {
                 phoneNumbers.add(new PhoneNumber().setValue(phoneNumber));
             }
 
-            // Step 3: Create a new contact object with the etag
             Person updatedContact = new Person();
-            updatedContact.setEtag(etag); // Add etag here
+            updatedContact.setEtag(etag);
             updatedContact.setNames(names);
             updatedContact.setEmailAddresses(emailAddresses);
             updatedContact.setPhoneNumbers(phoneNumbers);
 
-            // Step 4: Perform the update
             peopleService.people().updateContact(resourceName, updatedContact)
                     .setUpdatePersonFields("names,emailAddresses,phoneNumbers")
                     .execute();
@@ -154,7 +145,6 @@ public class GoogleContactsService {
         try {
             PeopleService peopleService = createPeopleService();
 
-            // Call the Google People API to delete the contact
             peopleService.people().deleteContact(resourceName).execute();
 
             System.out.println("Contact deleted successfully: " + resourceName);
@@ -163,6 +153,4 @@ public class GoogleContactsService {
             throw new IOException("Failed to delete contact in Google People API", e);
         }
     }
-
-
 }

@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Google Contacts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .navbar {
+            border-radius: 0 0 10px 10px;
+        }
+    </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Google Contacts</a>
+        <div class="d-flex">
+            <a class="btn btn-outline-light me-2" href="/user-info">Back</a>
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
 
+<div class="container my-5">
+    <div class="card p-4">
+        <h3 class="mb-4 text-center">Your Contacts</h3>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Emails</th>
+                    <th scope="col">Phone Numbers</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contact : ${contacts}">
+                    <td th:text="${contact.name}">John Doe</td>
+                    <td>
+                        <ul class="mb-0">
+                            <li th:each="email : ${contact.emails}" th:text="${email}">johndoe@example.com</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="mb-0">
+                            <li th:each="phone : ${contact.phones}" th:text="${phone}">+1 234 567 8900</li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center py-4 text-muted small">
+    &copy; 2025 Google Contacts Viewer
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
