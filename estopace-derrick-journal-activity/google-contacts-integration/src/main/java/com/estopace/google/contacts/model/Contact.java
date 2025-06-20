@@ -19,7 +19,7 @@ public class Contact {
         return emails;
     }
 
-    public void setEmails(List<String> emails){
+    public void setEmails(List<String> emails) {
         this.emails = emails;
     }
 
