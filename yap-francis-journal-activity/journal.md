@@ -39,3 +39,31 @@ I learned the different types of integration and requirement analysis of a syste
 **What I'm still confused about:**  
 How do you integrate those different integration architectures and making them scalable towards other systems?
 
+[Date: 06-20-2025]
+ 
+1. What did I accomplish yesterday?
+ 
+I added the necessary Spring Boot dependencies: Web, OAuth2 Client, Thymeleaf.
+ 
+I started working on the controller to manage Google OAuth login and callback.
+ 
+I successfully set up the application.properties with my OAuth client ID and secret.
+ 
+ 
+2. What will I do today?
+ 
+I will complete the controller code to exchange the auth code for an access token.
+ 
+I will call the People API (people/me/connections) and display contact names and emails in a Thymeleaf view.
+
+Fix Controller and Service Setup as well as the necessary import dependencies in the pom.xml
+ 
+I will test the login flow and data display while handling error with contacts
+ 
+ 
+3. Any blockers or challenges?
+ 
+Still validating that the access token works properly with the People API.
+ 
+Small issue with handling error states if a user cancels authorization.
+
