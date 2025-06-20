@@ -49,6 +49,18 @@ How a single system can handle all types of integration methods.
 
 ---
 
+#### 🗓️ **Daily Reflection (Date: 06-19-2025)**  
+**1. What did I accomplish yesterday?**  
+- Reviewed OAuth2 flow and practiced integrating GitHub and Google login.
+
+**2. What will I do today?**  
+- Explore Facebook OAuth integration and identify required scopes and permissions.
+
+**3. Any blockers or challenges?**  
+- Confused about Facebook’s token lifecycle and permission approval process.
+
+---
+
 ## 📅 Date: 2025-06-20
 
 ### **Sixth Entry**
@@ -57,3 +69,15 @@ We did Google Contacts API integration using OAuth2 in a Spring Boot application
 
 **What I'm still confused about:**  
 How to refresh the token automatically or extend its validity, and how to securely store credentials in production.
+
+---
+
+#### 🗓️ **Daily Reflection (Date: 06-20-2025)**  
+**1. What did I accomplish yesterday?**  
+- Completed GitHub and Google login OAuth2 integration.
+
+**2. What will I do today?**  
+- Implement Google Contacts API integration in our Spring Boot app and test fetching contact data.
+
+**3. Any blockers or challenges?**  
+- Uncertain how to manage token refresh cycles and securely store client secrets in production.
