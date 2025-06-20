@@ -1,0 +1,250 @@
+:root {
+    --primary-color: #00ff9d;
+    --secondary-color: #00cc7e;
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --card-background: #1e1e1e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+}
+
+.content {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 3rem;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.feature {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.feature h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.feature p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.login-section {
+    margin-top: 2rem;
+}
+
+.login-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Profile Card Styles */
+.profile-card {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.user-info {
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.info-item {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.label {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-right: 1rem;
+}
+
+.value {
+    color: var(--text-color);
+}
+
+/* Contacts Page Styles */
+.contacts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: var(--secondary-color);
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-card {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.contact-section {
+    margin: 1rem 0;
+}
+
+.contact-section h4 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.contact-section ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.contact-section li {
+    color: var(--text-color);
+    margin: 0.5rem 0;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.action-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.action-button.secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.action-button.secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+} 

@@ -1,0 +1,31 @@
+<form action="/contacts/edit" method="post">
+  <input type="hidden" name="resourceName" value="${resourceName}" />
+
+  <label>Name:</label>
+  <input type="text" name="name" required><br>
+
+  <label>Emails:</label>
+  <div id="email-container">
+    <input type="email" name="emails" required><br>
+  </div>
+  <button type="button" onclick="addEmail()">Add Email</button><br>
+
+  <label>Phones:</label>
+  <div id="phone-container">
+    <input type="tel" name="phones" required><br>
+  </div>
+  <button type="button" onclick="addPhone()">Add Phone</button><br>
+
+  <button type="submit">Update Contact</button>
+</form>
+
+<script>
+    function addEmail() {
+        const container = document.getElementById("email-container");
+        container.innerHTML += '<input type="email" name="emails"><br>';
+    }
+    function addPhone() {
+        const container = document.getElementById("phone-container");
+        container.innerHTML += '<input type="tel" name="phones"><br>';
+    }
+</script>

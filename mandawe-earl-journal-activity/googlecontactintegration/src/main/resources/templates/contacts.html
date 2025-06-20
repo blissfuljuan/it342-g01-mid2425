@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts - Google Contacts Integration</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="content">
+
+        <div class="contacts-header">
+            <h1>Your Contacts</h1>
+            <div class="contacts-actions">
+                <a th:href="@{/user-info}" class="back-button">← Back to Profile</a>
+                <a th:href="@{/contacts/add}" class="add-button">+ Add Contact</a>
+            </div>
+        </div>
+
+        <div class="contacts-grid">
+            <div th:each="contact : ${contacts}" class="contact-card">
+                <h3 th:text="${contact.name}">Contact Name</h3>
+                <div class="contact-details">
+                    <div th:if="${contact.emails != null && !contact.emails.isEmpty()}" class="contact-section">
+                        <h4>Emails:</h4>
+                        <ul>
+                            <li th:each="email : ${contact.emails}" th:text="${email}">email@example.com</li>
+                        </ul>
+                    </div>
+                    <div th:if="${contact.phones != null && !contact.phones.isEmpty()}" class="contact-section">
+                        <h4>Phones:</h4>
+                        <ul>
+                            <li th:each="phone : ${contact.phones}" th:text="${phone}">+1234567890</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contact-actions">
+                    <a th:href="@{'/contacts/edit'(resourceName=${contact.resourceName})}" class="btn btn-sm btn-warning">Edit</a>
+                    <a th:href="@{'/contacts/delete'(resourceName=${contact.resourceName})}" class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure you want to delete this contact?')">Delete</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
