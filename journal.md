@@ -37,3 +37,11 @@ About Oauth2 and Inegration of Github and Google in login
 
 **What I'm still confused about:**
 About Facebook
+
+📅 Date: 06-19-2025
+**What I learned today:**
+    About Integration and its methods
+
+**What I'm still confused about:**
+    About a System that has all the methods of integration in it.
+
