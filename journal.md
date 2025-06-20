@@ -23,3 +23,11 @@ Thymeleaf and Importing Google Contacts via API.
 
 What I'm still confused about:
 How to properly import the contact list from Google Contacts.
+
+# June 20, 2025
+
+What I learned today:
+Not much. Though I may have discovered about having to add scopes in Google Console.
+
+What I'm still confused about:
+Same problem.
