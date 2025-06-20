@@ -26,3 +26,18 @@ Today, I learned the fundamental Git commands such as git init, git add, git com
 
 **Confusion:**  
 I'm still a bit confused about the purpose of the staging area—why we need to git add before committing. It’s also unclear how to properly remove a file that was mistakenly added to the staging area or committed. Do I use git rm, git reset, or something else?
+
+## June 20,2025
+**1. What did I accomplish yesterday?**
+- Reviewed untracked files in my Git repository.
+- Resolved the issue with adding files to Git and initialized a submodule.
+- Worked on setting up the Agile Daily Stand-Up format for the journal.
+
+**2. What will I do today?**
+- Update my GitHub repository with the daily stand-up format.
+- Address any additional Git issues (if any come up).
+- Begin reviewing and planning for upcoming tasks in my project.
+
+**3. Any blockers or challenges?**
+- None at the moment, but I need to make sure my Git submodule is fully initialized.
+- Need to ensure consistent updates to this journal moving forward.
