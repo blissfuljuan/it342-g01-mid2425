@@ -65,7 +65,7 @@ public class GoogleContactsService {
         }
     }
 
-    public Person createContact(String givenName, String familyName, String email, String phoneNumber) throws IOException {
+    public Person createContact(String givenName, String familyName, List<String> emails, List<String> phones) throws IOException {
         try {
             PeopleService peopleService = createPeopleService();
 
@@ -78,23 +78,35 @@ public class GoogleContactsService {
             name.setFamilyName(familyName);
             newPerson.setNames(List.of(name));
 
-            // Set the email
-            if (email != null && !email.isEmpty()) {
-                EmailAddress emailAddress = new EmailAddress();
-                emailAddress.setValue(email);
-                newPerson.setEmailAddresses(List.of(emailAddress));
+            // Set the emails
+            if (emails != null && !emails.isEmpty()) {
+                List<EmailAddress> emailAddresses = emails.stream()
+                    .filter(email -> email != null && !email.trim().isEmpty())
+                    .map(email -> {
+                        EmailAddress emailAddress = new EmailAddress();
+                        emailAddress.setValue(email.trim());
+                        return emailAddress;
+                    })
+                    .collect(java.util.stream.Collectors.toList());
+                newPerson.setEmailAddresses(emailAddresses);
             }
 
-            // Set the phone number
-            if (phoneNumber != null && !phoneNumber.isEmpty()) {
-                PhoneNumber phone = new PhoneNumber();
-                phone.setValue(phoneNumber);
-                newPerson.setPhoneNumbers(List.of(phone));
+            // Set the phone numbers
+            if (phones != null && !phones.isEmpty()) {
+                List<PhoneNumber> phoneNumbers = phones.stream()
+                    .filter(phone -> phone != null && !phone.trim().isEmpty())
+                    .map(phone -> {
+                        PhoneNumber phoneNumber = new PhoneNumber();
+                        phoneNumber.setValue(phone.trim());
+                        return phoneNumber;
+                    })
+                    .collect(java.util.stream.Collectors.toList());
+                newPerson.setPhoneNumbers(phoneNumbers);
             }
 
             // Create the contact
             Person createdPerson = peopleService.people().createContact(newPerson).execute();
-            System.out.println("Created Contact ID: " + createdPerson.getResourceName()); // DEBUGGING CREATED CONTACT ID
+            System.out.println("Created Contact ID: " + createdPerson.getResourceName());
             return createdPerson;
 
         } catch (IOException e) {
@@ -104,7 +116,7 @@ public class GoogleContactsService {
         }
     }
 
-    public void updateContact(String resourceName, String givenName, String familyName, String email, String phoneNumber) throws IOException {
+    public void updateContact(String resourceName, String givenName, String familyName, List<String> emails, List<String> phones) throws IOException {
         try {
             PeopleService peopleService = createPeopleService();
 
@@ -119,19 +131,27 @@ public class GoogleContactsService {
             List<Name> names = new ArrayList<>();
             names.add(new Name().setGivenName(givenName).setFamilyName(familyName));
 
+            // Process emails
             List<EmailAddress> emailAddresses = new ArrayList<>();
-            if (email != null && !email.isEmpty()) {
-                emailAddresses.add(new EmailAddress().setValue(email));
+            if (emails != null && !emails.isEmpty()) {
+                emailAddresses = emails.stream()
+                    .filter(email -> email != null && !email.trim().isEmpty())
+                    .map(email -> new EmailAddress().setValue(email.trim()))
+                    .collect(java.util.stream.Collectors.toList());
             }
 
+            // Process phone numbers
             List<PhoneNumber> phoneNumbers = new ArrayList<>();
-            if (phoneNumber != null && !phoneNumber.isEmpty()) {
-                phoneNumbers.add(new PhoneNumber().setValue(phoneNumber));
+            if (phones != null && !phones.isEmpty()) {
+                phoneNumbers = phones.stream()
+                    .filter(phone -> phone != null && !phone.trim().isEmpty())
+                    .map(phone -> new PhoneNumber().setValue(phone.trim()))
+                    .collect(java.util.stream.Collectors.toList());
             }
 
             // Step 3: Create a new contact object with the etag
             Person updatedContact = new Person();
-            updatedContact.setEtag(etag); // Add etag here
+            updatedContact.setEtag(etag);
             updatedContact.setNames(names);
             updatedContact.setEmailAddresses(emailAddresses);
             updatedContact.setPhoneNumbers(phoneNumbers);

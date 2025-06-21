@@ -3,86 +3,9 @@
 <head>
     <title>Google Contacts</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f0f8ff;
-            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
-        }
-        .container {
-            margin-top: 40px;
-            max-width: 800px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-            border: 2px solid #4285F4;
-        }
-        .header-title {
-            text-align: center;
-            color: #4285F4;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-        .contact-card {
-            background: #e8f0fe;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-left: 5px solid #4285F4;
-            border-radius: 5px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .contact-info {
-            font-size: 16px;
-            color: #333;
-        }
-        .action-buttons button {
-            margin-right: 5px;
-        }
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .user-info-btn {
-            background-color: #4285F4;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-        }
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-            width: 100%;
-        }
-        .search-bar {
-            flex-grow: 1;
-            padding: 8px 15px;
-            border: 1px solid #4285F4;
-            border-radius: 20px;
-        }
-        .sort-dropdown {
-            padding: 8px 15px;
-            border: 1px solid #4285F4;
-            border-radius: 20px;
-            background-color: white;
-            color: #333;
-        }
-        /* Enhanced table header styling */
-        #contactsTable thead th {
-            background-color: #4285F4;
-            color: white;
-            font-weight: bold;
-            padding: 12px 15px;
-            position: relative;
-        }
-
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
@@ -127,12 +50,22 @@
                             <input type="text" class="form-control" id="familyName" name="familyName" required>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <label class="form-label">Emails</label>
+                            <div id="emailFields">
+                                <div class="input-group mb-2">
+                                    <input type="email" class="form-control" name="emails[]" placeholder="Email address">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="addEmailField()">+</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <label for="phoneNumber" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber">
+                            <label class="form-label">Phone Numbers</label>
+                            <div id="phoneFields">
+                                <div class="input-group mb-2">
+                                    <input type="tel" class="form-control" name="phones[]" placeholder="Phone number">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="addPhoneField()">+</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -158,8 +91,26 @@
         <tr th:each="contact : ${contacts}"
             th:with="displayName=${contact.names != null and contact.names.size() > 0 ? contact.names[0].displayName : 'Unnamed Contact'}">
             <td th:text="${displayName}"></td>
-            <td th:text="${contact.emailAddresses != null and contact.emailAddresses.size() > 0 ? contact.emailAddresses[0].value : 'No Email'}"></td>
-            <td th:text="${contact.phoneNumbers != null and contact.phoneNumbers.size() > 0 ? contact.phoneNumbers[0].value : 'No Number'}"></td>
+            <td>
+                <div th:if="${contact.emailAddresses != null and contact.emailAddresses.size() > 0}" class="contact-details">
+                    <div th:each="email : ${contact.emailAddresses}" class="detail-item">
+                        <span th:text="${email.value}" class="detail-value"></span>
+                    </div>
+                </div>
+                <div th:if="${contact.emailAddresses == null or contact.emailAddresses.isEmpty()}" class="text-muted">
+                    No Email
+                </div>
+            </td>
+            <td>
+                <div th:if="${contact.phoneNumbers != null and contact.phoneNumbers.size() > 0}" class="contact-details">
+                    <div th:each="phone : ${contact.phoneNumbers}" class="detail-item">
+                        <span th:text="${phone.value}" class="detail-value"></span>
+                    </div>
+                </div>
+                <div th:if="${contact.phoneNumbers == null or contact.phoneNumbers.isEmpty()}" class="text-muted">
+                    No Number
+                </div>
+            </td>
             <td class="action-buttons">
                 <!-- Edit Button (Opens Modal) -->
                 <button class="btn btn-warning btn-sm"
@@ -202,14 +153,30 @@
                                            th:value="${contact.names != null and contact.names.size() > 0 ? contact.names[0].familyName : ''}" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="editEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="editEmail" name="email"
-                                           th:value="${contact.emailAddresses != null and contact.emailAddresses.size() > 0 ? contact.emailAddresses[0].value : ''}">
+                                    <label class="form-label">Emails</label>
+                                    <div class="edit-email-fields">
+                                        <div th:each="email, stat : ${contact.emailAddresses}" class="input-group mb-2">
+                                            <input type="email" class="form-control" th:name="emails[]" th:value="${email.value}" placeholder="Email address">
+                                            <button type="button" class="btn btn-outline-danger" onclick="removeField(this)">-</button>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                            <input type="email" class="form-control" name="emails[]" placeholder="Add another email">
+                                            <button type="button" class="btn btn-outline-secondary" onclick="addField(this, 'email')">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="editPhoneNumber" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="editPhoneNumber" name="phoneNumber"
-                                           th:value="${contact.phoneNumbers != null and contact.phoneNumbers.size() > 0 ? contact.phoneNumbers[0].value : ''}">
+                                    <label class="form-label">Phone Numbers</label>
+                                    <div class="edit-phone-fields">
+                                        <div th:each="phone, stat : ${contact.phoneNumbers}" class="input-group mb-2">
+                                            <input type="tel" class="form-control" th:name="phones[]" th:value="${phone.value}" placeholder="Phone number">
+                                            <button type="button" class="btn btn-outline-danger" onclick="removeField(this)">-</button>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                            <input type="tel" class="form-control" name="phones[]" placeholder="Add another phone number">
+                                            <button type="button" class="btn btn-outline-secondary" onclick="addField(this, 'phone')">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -280,6 +247,54 @@
                 }
             }
         }
+    }
+
+    // Function to add email field
+    function addEmailField() {
+        const emailFields = document.getElementById('emailFields');
+        const newField = `
+            <div class="input-group mb-2">
+                <input type="email" class="form-control" name="emails[]" placeholder="Email address">
+                <button type="button" class="btn btn-outline-danger" onclick="this.parentElement.remove()">-</button>
+            </div>
+        `;
+        emailFields.insertAdjacentHTML('beforeend', newField);
+    }
+
+    // Function to add phone field
+    function addPhoneField() {
+        const phoneFields = document.getElementById('phoneFields');
+        const newField = `
+            <div class="input-group mb-2">
+                <input type="tel" class="form-control" name="phones[]" placeholder="Phone number">
+                <button type="button" class="btn btn-outline-danger" onclick="this.parentElement.remove()">-</button>
+            </div>
+        `;
+        phoneFields.insertAdjacentHTML('beforeend', newField);
+    }
+
+    // Function to add field in edit modal
+    function addField(button, type) {
+        const container = button.closest('.input-group').parentElement;
+        const newField = `
+            <div class="input-group mb-2">
+                <input type="${type === 'email' ? 'email' : 'tel'}" class="form-control" name="${type === 'email' ? 'emails[]' : 'phones[]'}" placeholder="${type === 'email' ? 'Email address' : 'Phone number'}">
+                <button type="button" class="btn btn-outline-danger" onclick="removeField(this)">-</button>
+            </div>
+        `;
+        container.insertBefore(createElementFromHTML(newField), button.closest('.input-group').nextSibling);
+    }
+
+    // Function to remove field
+    function removeField(button) {
+        button.closest('.input-group').remove();
+    }
+
+    // Helper function to create element from HTML string
+    function createElementFromHTML(htmlString) {
+        const div = document.createElement('div');
+        div.innerHTML = htmlString.trim();
+        return div.firstChild;
     }
 
     function sortContacts() {
