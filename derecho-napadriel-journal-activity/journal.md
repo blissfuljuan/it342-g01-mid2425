@@ -28,3 +28,14 @@ Excited to learn more.
   
 **3. Any blockers or challengers?**  
 - None.  
+
+
+## June 21, 2025  
+**1. What did I accomplish yesterday?**
+- Redesigned the user-info.
+  
+**2. What will I do today?**  
+- Modify project to handle multiple contact e-mails and phone numbers and to display.
+  
+**3. Any blockers or challengers?**  
+- Cannot make a pull request.  
