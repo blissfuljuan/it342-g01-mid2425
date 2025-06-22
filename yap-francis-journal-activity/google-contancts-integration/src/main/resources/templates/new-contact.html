@@ -5,36 +5,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #fce4ec 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .bg-shape1 {
+            width: 350px; height: 350px;
+            background: #6c63ff;
+            top: -100px; left: -100px;
+        }
+        .bg-shape2 {
+            width: 250px; height: 250px;
+            background: #f5365c;
+            bottom: -80px; right: -80px;
+        }
+        .add-card {
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(60,72,88,0.18);
+            border: none;
+            background: rgba(255,255,255,0.92);
+            z-index: 1;
+        }
+        .add-header {
+            font-weight: 700;
+            color: #3b3b98;
+            font-size: 2rem;
+            text-align: center;
+        }
+        .add-subtitle {
+            color: #888;
+            font-size: 1.05rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .profile-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #e0e6ed;
+            color: #6c63ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 2rem;
+            margin: 0 auto 1rem auto;
+        }
+        .form-section {
+            background: linear-gradient(120deg, #e3eafe 80%, #f3e8fd 100%);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(108,99,255,0.07);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            color: #3b3b98;
+            font-weight: 600;
+            font-size: 1.08rem;
+            margin-bottom: 0.3rem;
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 1.5px solid #d1d9f0;
+            background: #f7f9fd;
+            font-size: 1.08rem;
+            padding: 0.7rem 1rem;
+            margin-bottom: 0.7rem;
+            box-shadow: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-control:focus {
+            border-color: #6c63ff;
+            background: #eef2ff;
+            box-shadow: 0 0 0 2px rgba(108,99,255,0.10);
+        }
+        .btn-add {
+            background: #6c63ff;
+            color: #fff;
+            border-radius: 25px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(108,99,255,0.12);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1.08rem;
+            padding: 0.7rem 2rem;
+        }
+        .btn-add:hover {
+            background: #5548c8;
+            color: #fff;
+        }
+        .btn-cancel {
+            border-radius: 25px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1.08rem;
+            padding: 0.7rem 2rem;
+        }
+        @media (max-width: 768px) {
+            .add-header { font-size: 1.3rem; }
+            .add-card { padding: 0.5rem !important; }
+            .form-section { padding: 1.2rem 0.5rem 1rem 0.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Add New Contact</h2>
+    <div class="bg-shape bg-shape1"></div>
+    <div class="bg-shape bg-shape2"></div>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-6">
+                <div class="card add-card p-4">
+                    <div class="card-header bg-white border-0 pb-0">
+                        <div class="profile-avatar"><i class="bi bi-person-plus"></i></div>
+                        <div class="add-header">Add New Contact</div>
+                        <div class="add-subtitle">Create a new contact and keep your Google Contacts up to date.</div>
                     </div>
                     <div class="card-body">
                         <form action="/contacts/new" method="post">
-                            <div class="mb-3">
-                                <label for="givenName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="givenName" name="givenName" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="familyName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="familyName" name="familyName" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="emailAddress" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="emailAddress" name="emailAddress">
-                            </div>
-                            <div class="mb-3">
-                                <label for="phoneNumber" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber">
+                            <div class="form-section">
+                                <div class="mb-2">
+                                    <label for="givenName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="givenName" name="givenName" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="familyName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="familyName" name="familyName" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="emailAddress" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="emailAddress" name="emailAddress">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber">
+                                </div>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <a href="/contacts" class="btn btn-secondary">Cancel</a>
-                                <button type="submit" class="btn btn-primary">Add Contact</button>
+                                <a href="/contacts" class="btn btn-secondary btn-cancel"><i class="bi bi-arrow-left"></i> Cancel</a>
+                                <button type="submit" class="btn btn-add"><i class="bi bi-person-plus"></i> Add Contact</button>
                             </div>
                         </form>
                     </div>

@@ -1,4 +1,4 @@
-package com.pangalay.OAuth2Login;
+package com.yap.OAuth2Login;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

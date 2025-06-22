@@ -1,4 +1,4 @@
-package com.rivera.OAuth2Login;
+package com.yap.OAuth2Login;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

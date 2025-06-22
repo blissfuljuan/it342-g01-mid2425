@@ -12,7 +12,6 @@ import com.google.api.services.people.v1.model.PhoneNumber;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -60,7 +59,7 @@ public class GoogleContactsService {
     }
 
     public Person createContact(OAuth2AuthenticationToken authentication, String givenName, String familyName,
-                                String emailAddress, String phoneNumber) throws IOException, GeneralSecurityException {
+            String emailAddress, String phoneNumber) throws IOException, GeneralSecurityException {
         PeopleService peopleService = getPeopleService(authentication);
 
         Person contactToCreate = new Person();
@@ -84,7 +83,7 @@ public class GoogleContactsService {
     }
 
     public Person updateContact(OAuth2AuthenticationToken authentication, String resourceName,
-                                String givenName, String familyName, String emailAddress, String phoneNumber)
+            String givenName, String familyName, String emailAddress, String phoneNumber)
             throws IOException, GeneralSecurityException {
 
         PeopleService peopleService = getPeopleService(authentication);
@@ -143,7 +142,7 @@ public class GoogleContactsService {
             contactToUpdate.setEmailAddresses(emailAddresses);
         }
 
-        // Perform the update with tag included
+        // Perform the update with etag included
         return peopleService.people().updateContact(resourceName, contactToUpdate)
                 .setUpdatePersonFields("names,phoneNumbers,emailAddresses")
                 .execute();
@@ -162,10 +161,5 @@ public class GoogleContactsService {
         return peopleService.people().get(resourceName)
                 .setPersonFields("names,emailAddresses,phoneNumbers")
                 .execute();
-    }
-
-    public boolean getConnectionsAsPeople(OAuth2User principal) {
-
-        return false;
     }
 }
