@@ -1,4 +1,6 @@
+Journal Entry #3
+Entry 3 - June 22, 2025
 What I learned in Git:
-I learned about Git configuration and how to set up my identity using git config --global user.name and git config --global user.email. I also discovered that Git requires this setup before making any commits, and that the --global flag applies the configuration to all repositories on my computer. I understand now that every commit is associated with an author, which helps track who made what changes in collaborative projects.
+I learned about the basic Git workflow: add, commit, and push. I now understand that git add stages files for commit, git commit saves the changes to my local repository with a descriptive message, and git push uploads those changes to GitHub. I also learned that you need to be in the correct directory structure when working with Git commands, and that creating meaningful commit messages is important for tracking project history.
 One question or confusion I still have:
-I'm still confused about the difference between local and remote repositories. I understand I'm working locally on my computer, but I'm not entirely clear on how the synchronization works between my local changes and what's stored on GitHub. When exactly do my changes appear on GitHub?
+I'm curious about Git branches and when I should use them. I've heard about creating separate branches for different features, but I don't understand how to create them or when it's necessary. Is it always better to work on a separate branch, or is working directly on the main branch okay for simple projects like this journal?
