@@ -1,11 +1,4 @@
-
-# Git Learning Journal
-
-## Entry 1 - [June 22, 2025]
-
 What I learned in Git:
-Today I learned how to initialize a Git repository using git init. I also practiced checking the status of files with git status and learned how to stage changes with git add.
-
-
+I learned about Git configuration and how to set up my identity using git config --global user.name and git config --global user.email. I also discovered that Git requires this setup before making any commits, and that the --global flag applies the configuration to all repositories on my computer. I understand now that every commit is associated with an author, which helps track who made what changes in collaborative projects.
 One question or confusion I still have:
-Why do I need to stage files before committing? Why not just commit directly?
+I'm still confused about the difference between local and remote repositories. I understand I'm working locally on my computer, but I'm not entirely clear on how the synchronization works between my local changes and what's stored on GitHub. When exactly do my changes appear on GitHub?
