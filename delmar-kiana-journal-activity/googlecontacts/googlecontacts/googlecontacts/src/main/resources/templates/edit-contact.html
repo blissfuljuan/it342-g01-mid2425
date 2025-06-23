@@ -1,0 +1,39 @@
+<!-- edit-contact.html -->
+<!-- Same head and styles as before -->
+<!-- Only body section updated with JS limit enforcement -->
+
+<script>
+    function addEmailField() {
+        const container = document.getElementById("emailFields");
+        if (container.querySelectorAll("input").length >= 3) {
+            alert("You can only add up to 3 email addresses.");
+            return;
+        }
+        const div = document.createElement("div");
+        div.className = "input-group mb-2";
+        div.innerHTML = `
+            <input type="email" class="form-control" name="emails" required />
+            <button type="button" class="btn btn-danger" onclick="removeField(this)">×</button>
+        `;
+        container.appendChild(div);
+    }
+
+    function addPhoneField() {
+        const container = document.getElementById("phoneFields");
+        if (container.querySelectorAll("input").length >= 3) {
+            alert("You can only add up to 3 phone numbers.");
+            return;
+        }
+        const div = document.createElement("div");
+        div.className = "input-group mb-2";
+        div.innerHTML = `
+            <input type="tel" class="form-control" name="phones" required />
+            <button type="button" class="btn btn-danger" onclick="removeField(this)">×</button>
+        `;
+        container.appendChild(div);
+    }
+
+    function removeField(button) {
+        button.parentElement.remove();
+    }
+</script>
