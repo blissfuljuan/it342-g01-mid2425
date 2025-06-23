@@ -31,3 +31,11 @@ Not much. Though I may have discovered about having to add scopes in Google Cons
 
 What I'm still confused about:
 Same problem.
+
+# June 23, 2025
+
+What I learned today:
+Not much.
+
+What I'm still confused about:
+Still can't integrate Google Contacts right.
