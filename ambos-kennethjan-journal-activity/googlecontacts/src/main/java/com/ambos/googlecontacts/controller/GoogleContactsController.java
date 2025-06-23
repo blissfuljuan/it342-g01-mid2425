@@ -1,4 +1,4 @@
-package com.ambos.googlecontacts.controller.controller;
+package com.ambos.googlecontacts.controller;
 
 import com.ambos.googlecontacts.service.GoogleContactsService;
 import com.google.api.services.people.v1.model.Person;
