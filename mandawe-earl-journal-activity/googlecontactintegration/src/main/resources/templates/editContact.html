@@ -1,31 +1,63 @@
-<form action="/contacts/edit" method="post">
-  <input type="hidden" name="resourceName" value="${resourceName}" />
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Contact</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+  <h1>Edit Contact</h1>
+  <form th:action="@{/contacts/edit}" method="post">
+    <input type="hidden" name="resourceName" th:value="${resourceName}">
+    <input type="hidden" name="etag" th:value="${contact.etag}">
 
-  <label>Name:</label>
-  <input type="text" name="name" required><br>
+    <label>Name:</label>
+    <input type="text" name="name" th:value="${contact.name}" required><br>
 
-  <label>Emails:</label>
-  <div id="email-container">
-    <input type="email" name="emails" required><br>
-  </div>
-  <button type="button" onclick="addEmail()">Add Email</button><br>
+    <label>Emails:</label>
+    <div id="email-container">
+      <div th:each="email : ${contact.emails}">
+        <input type="email" name="emails" th:value="${email}"><br>
+      </div>
+      <input type="email" name="emails"><br>
+    </div>
+    <button type="button" onclick="addEmail()">Add Email</button><br>
 
-  <label>Phones:</label>
-  <div id="phone-container">
-    <input type="tel" name="phones" required><br>
-  </div>
-  <button type="button" onclick="addPhone()">Add Phone</button><br>
+    <label>Phones:</label>
+    <div id="phone-container">
+      <div th:each="phone : ${contact.phones}">
+        <input type="tel" name="phones" th:value="${phone}"><br> <
+      </div>
+      <input type="tel" name="phones"><br>
+    </div>
+    <button type="button" onclick="addPhone()">Add Phone</button><br><br>
 
-  <button type="submit">Update Contact</button>
-</form>
+    <button type="submit">Update Contact</button>
+  </form>
+
+  <br>
+  <a th:href="@{/contacts}">Back to Contacts</a>
+</div>
 
 <script>
-    function addEmail() {
-        const container = document.getElementById("email-container");
-        container.innerHTML += '<input type="email" name="emails"><br>';
-    }
-    function addPhone() {
-        const container = document.getElementById("phone-container");
-        container.innerHTML += '<input type="tel" name="phones"><br>';
-    }
+  function addEmail() {
+    const container = document.getElementById("email-container");
+    const input = document.createElement("input");
+    input.type = "email";
+    input.name = "emails"; // Fix: match name used in controller
+    container.appendChild(input);
+    container.appendChild(document.createElement("br"));
+  }
+
+  function addPhone() {
+    const container = document.getElementById("phone-container");
+    const input = document.createElement("input");
+    input.type = "tel";
+    input.name = "phones"; // Fix: match name used in controller
+    container.appendChild(input);
+    container.appendChild(document.createElement("br"));
+  }
 </script>
+</body>
+</html>

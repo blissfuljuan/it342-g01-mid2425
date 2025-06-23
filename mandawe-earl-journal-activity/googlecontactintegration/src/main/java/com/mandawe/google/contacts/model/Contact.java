@@ -6,14 +6,24 @@ public class Contact {
     private String name;
     private List<String> emails;
     private List<String> phones;
-    private String resourceName; // ✅ ADD THIS
+    private String resourceName;
+    private String etag; // ✅ Added for update operations
 
     // Constructor
     public Contact(String name) {
         this.name = name;
     }
 
-    // ✅ ADD GETTER AND SETTER for resourceName
+    // ✅ Getter and Setter for etag
+    public String getEtag() {
+        return etag;
+    }
+
+    public void setEtag(String etag) {
+        this.etag = etag;
+    }
+
+    // Getter and Setter for resourceName
     public String getResourceName() {
         return resourceName;
     }
@@ -22,7 +32,7 @@ public class Contact {
         this.resourceName = resourceName;
     }
 
-    // Existing getters and setters...
+    // Other Getters and Setters
     public String getName() {
         return name;
     }

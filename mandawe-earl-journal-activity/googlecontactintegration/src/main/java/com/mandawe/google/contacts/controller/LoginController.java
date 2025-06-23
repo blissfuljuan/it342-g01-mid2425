@@ -21,7 +21,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage(Model model) {
-        System.out.println("==== LoginController: I was here");
+        System.out.println("here");
         Iterable<ClientRegistration> clientRegistrations = null;
         ResolvableType type = ResolvableType.forInstance(clientRegistrationRepository).as(Iterable.class);
         if (type != ResolvableType.NONE && ClientRegistration.class.isAssignableFrom(type.resolveGenerics()[0])) {

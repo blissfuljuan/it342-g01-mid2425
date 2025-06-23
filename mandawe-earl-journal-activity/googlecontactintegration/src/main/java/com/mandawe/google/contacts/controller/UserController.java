@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping("/user-info")
     public String getUser(@AuthenticationPrincipal OAuth2User oAuth2User, Model model){
-        System.out.println("================ I was here in user info");
+        System.out.println("here");
         if( oAuth2User != null) {
             model.addAttribute("user", Utils.OAuth2UserToUser(oAuth2User));
         } else {

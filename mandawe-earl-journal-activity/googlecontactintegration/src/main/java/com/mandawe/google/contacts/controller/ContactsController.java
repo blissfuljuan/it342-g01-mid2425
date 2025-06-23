@@ -2,10 +2,7 @@ package com.mandawe.google.contacts.controller;
 
 import com.mandawe.google.contacts.model.Contact;
 import com.mandawe.google.contacts.service.GoogleContactsService;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthorizationCodeAuthenticationToken;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,32 +34,33 @@ public class ContactsController {
 
     @PostMapping("/add")
     public String addContact(OAuth2AuthenticationToken token,
-                           @RequestParam String name,
-                           @RequestParam String email,
-                           @RequestParam String phone) {
+                             @RequestParam String name,
+                             @RequestParam String email,
+                             @RequestParam String phone) {
         contactsService.addContact(token, name, email, phone);
         return "redirect:/contacts";
     }
 
     @GetMapping("/edit")
     public String showEditForm(@RequestParam String resourceName, Model model, OAuth2AuthenticationToken token) {
-        // You'll need to either store resourceName in your Contact model or fetch it here.
-        // For simplicity, pass it back with a form
+        Contact contact = contactsService.getContactDetails(token, resourceName);
+        model.addAttribute("contact", contact);
         model.addAttribute("resourceName", resourceName);
-        return "editContact"; // create this HTML form
+        return "editContact";
     }
 
     @PostMapping("/edit")
-    public String updateContact(
-            OAuth2AuthenticationToken token,
-            @RequestParam String resourceName,
-            @RequestParam String name,
-            @RequestParam(required = false) List<String> emails,
-            @RequestParam(required = false) List<String> phones) {
-
-        contactsService.updateContact(token, resourceName, name, emails, phones);
+    public String updateContact(OAuth2AuthenticationToken token,
+                                @RequestParam String resourceName,
+                                @RequestParam String name,
+                                @RequestParam(name = "emails") List<String> emails,
+                                @RequestParam(name = "phones") List<String> phones,
+                                @RequestParam(name = "etag") String etag) {
+        contactsService.updateContact(token, resourceName, name, emails, phones, etag);
         return "redirect:/contacts";
     }
+
+
 
     @GetMapping("/delete")
     public String deleteContact(@RequestParam String resourceName, OAuth2AuthenticationToken token) {
