@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Contact</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Edit Contact</h1>
+
+    <form action="/contacts/update" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+        <!-- Hidden resource name -->
+        <input type="hidden" name="resourceName" th:value="${resourceName}" />
+
+        <label>New Name:</label>
+        <input type="text" name="name" required><br>
+
+        <label>New Email:</label>
+        <input type="email" name="email" required><br>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <a href="/contacts">Back</a>
+</body>
+</html>

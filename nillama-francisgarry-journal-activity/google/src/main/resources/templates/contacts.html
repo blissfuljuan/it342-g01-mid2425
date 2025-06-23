@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Your Contacts</title>
+    <title>Your Google Contacts</title>
+    <meta charset="UTF-8">
 </head>
 <body>
-    <h1>Your Google Contacts JSON</h1>
-    <pre th:text="${contactsJson}">Loading...</pre>
+    <h1>Your Google Contacts</h1>
+
+    <!-- Contact List -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="contact : ${parsedContacts}">
+                <td th:text="${contact.name}">Name</td>
+                <td th:text="${contact.email}">Email</td>
+                <td th:text="${contact.phone}">Phone</td>
+                <td>
+                    <a th:href="@{'/contacts/edit'(resourceName=${contact.resourceName})}">Edit</a>
+                    |
+                    <a th:href="@{'/contacts/delete'(resourceName=${contact.resourceName})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Create Contact Form -->
+    <h2>Create a New Contact</h2>
+    <form action="/contacts/create" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+        <label>Name:</label>
+        <input type="text" name="name" required><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label>Phone:</label>
+        <input type="text" name="phone"><br>
+
+        <button type="submit">Create</button>
+    </form>
 </body>
 </html>
