@@ -67,3 +67,21 @@ Still validating that the access token works properly with the People API.
  
 Small issue with handling error states if a user cancels authorization.
 
+[Date: 06-23-2025]//
+ 
+1. What did I accomplish yesterday?
+ 
+Continued working on my google contacts integration especially the controller and googlecontact service site to make sure 
+that the access tokens can be called without issues as well as improving ui design for user friendly interaction in the templates side
+ 
+2. What will I do today?
+ 
+finished up setting the google contacts successfully by adding crud operations and redirecting it to my google contacts site 
+ 
+3. Any blockers or challenges?
+ 
+Still validating that the access token works properly with the People API.
+Still  Configuring  springboot and pom.xml depedencies making sure some java and google api depencies
+are correct to avoid running errors..
+
+
