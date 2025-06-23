@@ -23,7 +23,7 @@
             color: white;
             border: none;
             padding: 10px 20px;
-            margin: 10px;
+            margin: 10px 5px;
             display: inline-block;
             border-radius: 5px;
         }
@@ -41,6 +41,10 @@
         label {
             color: #ff6600;
         }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body class="container mt-5">
@@ -48,26 +52,54 @@
 <h2>Add New Contact</h2>
 
 <form th:action="@{/contacts/add}" method="post">
-    <div class="mb-3">
+    <div class="form-section">
         <label for="name" class="form-label">Name:</label>
         <input type="text" name="name" class="form-control" id="name" placeholder="Full Name" required />
     </div>
 
-    <div class="mb-3">
-        <label for="email" class="form-label">Email:</label>
-        <input type="email" name="email" class="form-control" id="email" placeholder="Email address" required />
+    <div class="form-section">
+        <label class="form-label">Emails:</label>
+        <div id="emailFields">
+            <input type="email" name="email" class="form-control mb-2" placeholder="Email address" required />
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-light" onclick="addEmailField()">+ Add Email</button>
     </div>
 
-    <div class="mb-3">
-        <label for="phone" class="form-label">Phone:</label>
-        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone number" required />
+    <div class="form-section">
+        <label class="form-label">Phones:</label>
+        <div id="phoneFields">
+            <input type="text" name="phone" class="form-control mb-2" placeholder="Phone number" required />
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-light" onclick="addPhoneField()">+ Add Phone</button>
     </div>
 
-    <div class="text-center">
+    <div class="text-center mt-4">
         <button type="submit" class="btn-custom">Save Contact</button>
         <a href="/contacts" class="btn-custom">Cancel</a>
     </div>
 </form>
+
+<script>
+    function addEmailField() {
+        const container = document.getElementById("emailFields");
+        const input = document.createElement("input");
+        input.type = "email";
+        input.name = "email";
+        input.placeholder = "Additional Email";
+        input.className = "form-control mb-2";
+        container.appendChild(input);
+    }
+
+    function addPhoneField() {
+        const container = document.getElementById("phoneFields");
+        const input = document.createElement("input");
+        input.type = "text";
+        input.name = "phone";
+        input.placeholder = "Additional Phone";
+        input.className = "form-control mb-2";
+        container.appendChild(input);
+    }
+</script>
 
 </body>
 </html>

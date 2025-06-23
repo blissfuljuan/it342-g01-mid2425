@@ -32,8 +32,7 @@ public class GoogleContactsService {
 
     private void initService(OAuth2AuthenticationToken token) throws GeneralSecurityException, IOException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        OAuth2AuthorizedClient client = authorizedClientService
-                .loadAuthorizedClient("google", token.getName());
+        OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient("google", token.getName());
         if (client == null) throw new RuntimeException("OAuth2 client not found");
         OAuth2AccessToken accessToken = client.getAccessToken();
         GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken.getTokenValue());
@@ -79,29 +78,73 @@ public class GoogleContactsService {
         return contactsList;
     }
 
-    public void addContact(OAuth2AuthenticationToken token, String name, String email, String phone) {
+    public void addContact(OAuth2AuthenticationToken token, String name, List<String> emails, List<String> phones) {
         try {
             initService(token);
             Person person = new Person();
-            person.setNames(List.of(new Name().setDisplayName(name)));
-            person.setEmailAddresses(List.of(new EmailAddress().setValue(email)));
-            person.setPhoneNumbers(List.of(new PhoneNumber().setValue(phone)));
+
+            // Fix: Set givenName to ensure name is saved
+            Name nameObj = new Name()
+                    .setDisplayName(name)
+                    .setGivenName(name);
+            person.setNames(List.of(nameObj));
+
+            List<EmailAddress> emailAddresses = new ArrayList<>();
+            for (String email : emails) {
+                if (!email.isBlank()) emailAddresses.add(new EmailAddress().setValue(email));
+            }
+            person.setEmailAddresses(emailAddresses);
+
+            List<PhoneNumber> phoneNumbers = new ArrayList<>();
+            for (String phone : phones) {
+                if (!phone.isBlank()) phoneNumbers.add(new PhoneNumber().setValue(phone));
+            }
+            person.setPhoneNumbers(phoneNumbers);
+
             peopleService.people().createContact(person).execute();
         } catch (IOException | GeneralSecurityException e) {
             throw new RuntimeException("Failed to add contact", e);
         }
     }
 
-    public void updateContact(OAuth2AuthenticationToken token, String resourceName, String name, String email, String phone) {
+    public void updateContact(OAuth2AuthenticationToken token, String resourceName, String name, List<String> emails, List<String> phones) {
         try {
             initService(token);
-            Person person = new Person();
-            person.setNames(List.of(new Name().setDisplayName(name)));
-            person.setEmailAddresses(List.of(new EmailAddress().setValue(email)));
-            person.setPhoneNumbers(List.of(new PhoneNumber().setValue(phone)));
-            peopleService.people().updateContact(resourceName, person)
+
+            // Fetch existing contact to retain metadata (etag, etc.)
+            Person existingPerson = peopleService.people()
+                    .get(resourceName)
+                    .setPersonFields("names,emailAddresses,phoneNumbers")
+                    .execute();
+
+            existingPerson.setEtag(existingPerson.getEtag());
+
+            // Fix: Set givenName properly
+            Name nameObj = new Name()
+                    .setDisplayName(name)
+                    .setGivenName(name);
+            existingPerson.setNames(List.of(nameObj));
+
+            List<EmailAddress> emailAddresses = new ArrayList<>();
+            for (String email : emails) {
+                if (email != null && !email.isBlank()) {
+                    emailAddresses.add(new EmailAddress().setValue(email));
+                }
+            }
+            existingPerson.setEmailAddresses(emailAddresses);
+
+            List<PhoneNumber> phoneNumbers = new ArrayList<>();
+            for (String phone : phones) {
+                if (phone != null && !phone.isBlank()) {
+                    phoneNumbers.add(new PhoneNumber().setValue(phone));
+                }
+            }
+            existingPerson.setPhoneNumbers(phoneNumbers);
+
+            peopleService.people().updateContact(resourceName, existingPerson)
                     .setUpdatePersonFields("names,emailAddresses,phoneNumbers")
                     .execute();
+
         } catch (IOException | GeneralSecurityException e) {
             throw new RuntimeException("Failed to update contact", e);
         }
@@ -113,6 +156,37 @@ public class GoogleContactsService {
             peopleService.people().deleteContact(resourceName).execute();
         } catch (IOException | GeneralSecurityException e) {
             throw new RuntimeException("Failed to delete contact", e);
+        }
+    }
+
+    public Contact getContactByResourceName(OAuth2AuthenticationToken token, String resourceName) {
+        try {
+            initService(token);
+            Person person = peopleService.people()
+                    .get(resourceName)
+                    .setPersonFields("names,emailAddresses,phoneNumbers")
+                    .execute();
+
+            String name = (person.getNames() != null && !person.getNames().isEmpty())
+                    ? person.getNames().get(0).getDisplayName()
+                    : "";
+            List<String> emails = new ArrayList<>();
+            if (person.getEmailAddresses() != null) {
+                person.getEmailAddresses().forEach(email -> emails.add(email.getValue()));
+            }
+            List<String> phones = new ArrayList<>();
+            if (person.getPhoneNumbers() != null) {
+                person.getPhoneNumbers().forEach(phone -> phones.add(phone.getValue()));
+            }
+
+            Contact contact = new Contact(name);
+            contact.setEmails(emails);
+            contact.setPhones(phones);
+            contact.setResourceName(resourceName);
+            return contact;
+
+        } catch (IOException | GeneralSecurityException e) {
+            throw new RuntimeException("Failed to retrieve contact", e);
         }
     }
 }
