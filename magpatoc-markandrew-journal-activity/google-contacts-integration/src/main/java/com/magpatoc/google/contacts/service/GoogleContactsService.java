@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GoogleContactsService {
@@ -29,25 +30,32 @@ public class GoogleContactsService {
         this.authorizedClientService = authorizedClientService;
     }
 
+    private PeopleService buildPeopleService(OAuth2AuthenticationToken token)
+            throws GeneralSecurityException, IOException {
+
+        NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+
+        OAuth2AuthorizedClient client = authorizedClientService
+                .loadAuthorizedClient("google", token.getName());
+
+        if (client == null) {
+            throw new RuntimeException("OAuth2 client not found");
+        }
+
+        OAuth2AccessToken accessToken = client.getAccessToken();
+        GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken.getTokenValue());
+
+        return new PeopleService.Builder(httpTransport, JSON_FACTORY, credential)
+                .setApplicationName("Google Contacts Integration")
+                .build();
+    }
+
     public List<Contact> getContacts(OAuth2AuthenticationToken token) {
         try {
-            final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+            PeopleService peopleService = buildPeopleService(token);
 
-            OAuth2AuthorizedClient client = authorizedClientService
-                    .loadAuthorizedClient("google", token.getName());
-
-            if (client == null) {
-                throw new RuntimeException("OAuth2 client not found");
-            }
-
-            OAuth2AccessToken accessToken = client.getAccessToken();
-            GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken.getTokenValue());
-
-            PeopleService peopleService = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-                    .setApplicationName("Google Contacts Integration")
-                    .build();
-
-            ListConnectionsResponse response = peopleService.people().connections().list("people/me")
+            ListConnectionsResponse response = peopleService.people().connections()
+                    .list("people/me")
                     .setPersonFields("names,emailAddresses,phoneNumbers")
                     .execute();
 
@@ -58,16 +66,105 @@ public class GoogleContactsService {
         }
     }
 
-    private List<Contact> parseContacts(List<Person> persons) {
+    public void addContact(OAuth2AuthenticationToken token, Contact contact) {
+        try {
+            PeopleService peopleService = buildPeopleService(token);
+
+            Person person = new Person();
+
+            if (contact.getName() != null && !contact.getName().isBlank()) {
+                person.setNames(List.of(new Name().setGivenName(contact.getName())));
+            }
+
+            if (contact.getEmails() != null && !contact.getEmails().isEmpty()) {
+                person.setEmailAddresses(contact.getEmails().stream()
+                        .filter(email -> email != null && !email.isBlank())
+                        .map(email -> new EmailAddress().setValue(email))
+                        .collect(Collectors.toList()));
+            }
+
+            if (contact.getPhones() != null && !contact.getPhones().isEmpty()) {
+                person.setPhoneNumbers(contact.getPhones().stream()
+                        .filter(phone -> phone != null && !phone.isBlank())
+                        .map(phone -> new PhoneNumber().setValue(phone))
+                        .collect(Collectors.toList()));
+            }
+
+            peopleService.people().createContact(person).execute();
+
+        } catch (IOException | GeneralSecurityException e) {
+            throw new RuntimeException("Failed to add contact", e);
+        }
+    }
+
+    public void updateContact(OAuth2AuthenticationToken token, Contact contact) {
+        try {
+            PeopleService peopleService = buildPeopleService(token);
+
+            // Get existing contact (needed for ETag)
+            Person existingPerson = peopleService.people()
+                    .get(contact.getId())
+                    .setPersonFields("names,emailAddresses,phoneNumbers")
+                    .execute();
+
+            Person updatedPerson = new Person();
+            updatedPerson.setEtag(existingPerson.getEtag()); // Required for update
+
+            if (contact.getName() != null && !contact.getName().isBlank()) {
+                updatedPerson.setNames(List.of(new Name().setGivenName(contact.getName())));
+            }
+
+            if (contact.getEmails() != null && !contact.getEmails().isEmpty()) {
+                updatedPerson.setEmailAddresses(contact.getEmails().stream()
+                        .filter(email -> email != null && !email.isBlank())
+                        .map(email -> new EmailAddress().setValue(email))
+                        .collect(Collectors.toList()));
+            }
+
+            if (contact.getPhones() != null && !contact.getPhones().isEmpty()) {
+                updatedPerson.setPhoneNumbers(contact.getPhones().stream()
+                        .filter(phone -> phone != null && !phone.isBlank())
+                        .map(phone -> new PhoneNumber().setValue(phone))
+                        .collect(Collectors.toList()));
+            }
+
+            peopleService.people()
+                    .updateContact(contact.getId(), updatedPerson)
+                    .setUpdatePersonFields("names,emailAddresses,phoneNumbers")
+                    .execute();
+
+        } catch (IOException | GeneralSecurityException e) {
+            throw new RuntimeException("Failed to update contact", e);
+        }
+    }
+
+    public void deleteContact(OAuth2AuthenticationToken token, String resourceName) {
+        try {
+            if (resourceName == null || !resourceName.startsWith("people/")) {
+                throw new IllegalArgumentException("Invalid resource name: " + resourceName);
+            }
+
+            PeopleService peopleService = buildPeopleService(token);
+            peopleService.people().deleteContact(resourceName).execute();
+
+        } catch (IOException | GeneralSecurityException e) {
+            throw new RuntimeException("Failed to delete contact", e);
+        }
+    }
+
+    private List<Contact> parseContacts(List<Person> people) {
         List<Contact> contactsList = new ArrayList<>();
 
-        if (persons != null) {
-            for (Person person : persons) {
+        if (people != null) {
+            for (Person person : people) {
                 String name = extractName(person);
                 List<String> emails = extractEmails(person);
                 List<String> phones = extractPhones(person);
+                String resourceName = person.getResourceName();
 
-                Contact contact = new Contact(name);
+                Contact contact = new Contact();
+                contact.setId(resourceName);
+                contact.setName(name);
                 contact.setEmails(emails);
                 contact.setPhones(phones);
 
@@ -80,28 +177,28 @@ public class GoogleContactsService {
 
     private String extractName(Person person) {
         List<Name> names = person.getNames();
-        return (names != null && !names.isEmpty()) ? names.get(0).getDisplayName() : "No Name";
+        return (names != null && !names.isEmpty()) ? names.get(0).getDisplayName() : "Unnamed";
     }
 
     private List<String> extractEmails(Person person) {
-        List<String> emailsList = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         List<EmailAddress> emails = person.getEmailAddresses();
         if (emails != null) {
             for (EmailAddress email : emails) {
-                emailsList.add(email.getValue());
+                result.add(email.getValue());
             }
         }
-        return emailsList;
+        return result;
     }
 
     private List<String> extractPhones(Person person) {
-        List<String> phonesList = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         List<PhoneNumber> phones = person.getPhoneNumbers();
         if (phones != null) {
             for (PhoneNumber phone : phones) {
-                phonesList.add(phone.getValue());
+                result.add(phone.getValue());
             }
         }
-        return phonesList;
+        return result;
     }
 }

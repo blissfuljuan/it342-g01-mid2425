@@ -19,23 +19,38 @@ public class ContactsController {
         this.contactsService = contactsService;
     }
 
+    // Display all contacts and form
     @GetMapping
     public String getContacts(OAuth2AuthenticationToken token, Model model) {
         List<Contact> contacts = contactsService.getContacts(token);
         model.addAttribute("contacts", contacts);
-        model.addAttribute("newContact", new Contact()); // for form binding
+        model.addAttribute("newContact", new Contact());
         return "contacts";
     }
 
+    // Add new contact
     @PostMapping
-    public String addContact(@ModelAttribute Contact contact,
-                             OAuth2AuthenticationToken token,
-                             Model model) {
-        System.out.println("Received new contact: " + contact.getName());
-        // No saving yet - just reloading for now
-        List<Contact> contacts = contactsService.getContacts(token);
-        model.addAttribute("contacts", contacts);
-        model.addAttribute("newContact", new Contact());
-        return "contacts";
+    public String addContact(@ModelAttribute("newContact") Contact contact,
+                             OAuth2AuthenticationToken token) {
+        contactsService.addContact(token, contact);
+        return "redirect:/contacts";
+    }
+
+    // Update contact (contact.id can contain slashes like "people/c123")
+    @PostMapping("/update/{id:.+}")
+    public String updateContact(@PathVariable String id,
+                                @ModelAttribute Contact contact,
+                                OAuth2AuthenticationToken token) {
+        contact.setId(id);
+        contactsService.updateContact(token, contact);
+        return "redirect:/contacts";
+    }
+
+    // Delete contact (resourceName with slashes supported)
+    @GetMapping("/delete/{id:.+}")
+    public String deleteContact(@PathVariable String id,
+                                OAuth2AuthenticationToken token) {
+        contactsService.deleteContact(token, id);
+        return "redirect:/contacts";
     }
 }

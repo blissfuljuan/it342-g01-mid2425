@@ -1,23 +1,25 @@
 package com.magpatoc.google.contacts.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Contact {
-
+    private String id;
     private String name;
     private List<String> emails;
     private List<String> phones;
 
-    public Contact() {
-        this.emails = new ArrayList<>();
-        this.phones = new ArrayList<>();
-    }
+    public Contact() {}
 
     public Contact(String name) {
         this.name = name;
-        this.emails = new ArrayList<>();
-        this.phones = new ArrayList<>();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

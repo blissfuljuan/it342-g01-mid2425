@@ -25,10 +25,20 @@
             </ul>
         </td>
         <td>
-            <ul>
-                <li th:each="phone : ${contact.phones}" th:text="${phone}"></li>
-            </ul>
+            <!-- Delete Button -->
+            <a th:href="@{'/contacts/delete/' + ${contact.id}}" class="btn btn-danger btn-sm mb-1"
+               onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
+
+            <!-- Edit Form -->
+            <form th:action="@{/contacts/update}" method="post" style="display:inline;">
+                <input type="hidden" name="id" th:value="${contact.id}" />
+                <input type="hidden" name="name" th:value="${contact.name}" />
+                <input type="hidden" name="emails[0]" th:value="${#lists.isEmpty(contact.emails) ? '' : contact.emails[0]}" />
+                <input type="hidden" name="phones[0]" th:value="${#lists.isEmpty(contact.phones) ? '' : contact.phones[0]}" />
+                <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+            </form>
         </td>
+
     </tr>
     </tbody>
 </table>
