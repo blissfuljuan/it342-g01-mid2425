@@ -81,3 +81,18 @@ How to refresh the token automatically or extend its validity, and how to secure
 
 **3. Any blockers or challenges?**  
 - Uncertain failed to commit my actual into github sht.
+
+# 🗓️ Daily Reflection (Date: 06-23-2025)
+
+## 1. What did I accomplish yesterday?
+
+Integrated Google Contacts API into our Spring Boot app and tested fetching contact data.
+
+## 2. What will I do today?
+
+Fix Git issues related to committing actual files and ensure proper version control setup.
+
+## 3. Any blockers or challenges?
+
+Git shows merge conflict markers (>>>>>) but the file appears empty or cannot be opened. Unsure how to properly resolve and commit the correct file.
+
