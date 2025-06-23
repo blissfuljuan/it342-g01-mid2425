@@ -178,28 +178,28 @@
                                     <div class="avatar" th:text="${not #lists.isEmpty(contact.names) ? (contact.names[0].givenName != null ? contact.names[0].givenName.substring(0,1) : '') + (contact.names[0].familyName != null ? contact.names[0].familyName.substring(0,1) : '') : 'U'}"></div>
                                 </td>
                                 <td>
-                                    <span th:text="${not #lists.isEmpty(contact.names) ? 
-                                                    (contact.names[0].givenName != null ? contact.names[0].givenName : '') + 
-                                                    (contact.names[0].familyName != null ? ' ' + contact.names[0].familyName : '') 
+                                    <span th:text="${not #lists.isEmpty(contact.names) ?
+                                                    (contact.names[0].givenName != null ? contact.names[0].givenName : '') +
+                                                    (contact.names[0].familyName != null ? ' ' + contact.names[0].familyName : '')
                                                     : 'Unnamed Contact'}">
                                         John Doe
                                     </span>
                                 </td>
                                 <td>
-                                    <span th:if="${not #lists.isEmpty(contact.emailAddresses)}" 
+                                    <span th:if="${not #lists.isEmpty(contact.emailAddresses)}"
                                           th:text="${contact.emailAddresses[0].value}">
                                         email@example.com
                                     </span>
                                 </td>
                                 <td>
-                                    <span th:if="${not #lists.isEmpty(contact.phoneNumbers)}" 
+                                    <span th:if="${not #lists.isEmpty(contact.phoneNumbers)}"
                                           th:text="${contact.phoneNumbers[0].value}">
                                         123-456-7890
                                     </span>
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a th:href="@{/contacts/edit(resourceName=${contact.resourceName})}" 
+                                        <a th:href="@{/contacts/edit(resourceName=${contact.resourceName})}"
                                            class="btn btn-edit btn-sm px-3"><i class="bi bi-pencil"></i> Edit</a>
                                         <form th:action="@{/contacts/delete}" method="post" class="d-inline">
                                             <input type="hidden" name="resourceName" th:value="${contact.resourceName}" />
