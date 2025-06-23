@@ -22,6 +22,9 @@ public class GoogleOAuthController {
     @Autowired
     private OAuth2AuthorizedClientService authorizedClientService;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @GetMapping("/")
     public String home() {
         return "index";
@@ -39,7 +42,6 @@ public class GoogleOAuthController {
 
         String accessToken = authorizedClient.getAccessToken().getTokenValue();
 
-        RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(accessToken);
         HttpEntity<String> entity = new HttpEntity<>("", headers);
@@ -49,7 +51,6 @@ public class GoogleOAuthController {
 
         ResponseEntity<String> response = restTemplate.exchange(peopleApiUrl, HttpMethod.GET, entity, String.class);
 
-        // Parse JSON response into List<ContactDTO>
         List<ContactDTO> contactList = new ArrayList<>();
         JSONObject json = new JSONObject(response.getBody());
         JSONArray connections = json.optJSONArray("connections");
@@ -100,7 +101,6 @@ public class GoogleOAuthController {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
 
-        RestTemplate restTemplate = new RestTemplate();
         restTemplate.postForEntity(createUrl, entity, String.class);
 
         return "redirect:/contacts";
@@ -119,7 +119,6 @@ public class GoogleOAuthController {
         headers.setBearerAuth(accessToken);
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        RestTemplate restTemplate = new RestTemplate();
         restTemplate.exchange(deleteUrl, HttpMethod.DELETE, entity, Void.class);
 
         return "redirect:/contacts";
@@ -132,30 +131,54 @@ public class GoogleOAuthController {
     }
 
     @PostMapping("/contacts/update")
-    public String updateContact(@RequestParam String resourceName, @RequestParam String name,
-                                @RequestParam String email, OAuth2AuthenticationToken authentication) {
-        OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient(
-                authentication.getAuthorizedClientRegistrationId(),
-                authentication.getName());
-        String accessToken = client.getAccessToken().getTokenValue();
+    public String updateContact(@RequestParam String resourceName,
+                                @RequestParam String name,
+                                @RequestParam String email,
+                                OAuth2AuthenticationToken authentication) {
+        try {
+            OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient(
+                    authentication.getAuthorizedClientRegistrationId(),
+                    authentication.getName());
+            String accessToken = client.getAccessToken().getTokenValue();
 
-        String updateUrl = "https://people.googleapis.com/v1/" + resourceName + ":updateContact?updatePersonFields=names,emailAddresses";
+            // Get current contact to retrieve etag
+            String getUrl = "https://people.googleapis.com/v1/" + resourceName + "?personFields=names,emailAddresses";
+            HttpHeaders getHeaders = new HttpHeaders();
+            getHeaders.setBearerAuth(accessToken);
+            HttpEntity<String> getEntity = new HttpEntity<>(getHeaders);
 
-        String requestBody = """
-        {
-          "names": [{"givenName": "%s"}],
-          "emailAddresses": [{"value": "%s"}]
+            ResponseEntity<String> getResponse = restTemplate.exchange(getUrl, HttpMethod.GET, getEntity, String.class);
+
+            JSONObject json = new JSONObject(getResponse.getBody());
+            String etag = json.optString("etag");
+
+            if (etag == null || etag.isEmpty()) {
+                System.out.println("Missing etag — cannot proceed with update.");
+                return "redirect:/contacts";
+            }
+
+            // Prepare update payload
+            String updateUrl = "https://people.googleapis.com/v1/" + resourceName + ":updateContact?updatePersonFields=names,emailAddresses";
+
+            JSONObject payload = new JSONObject();
+            payload.put("etag", etag);
+            payload.put("names", new JSONArray().put(new JSONObject().put("givenName", name)));
+            payload.put("emailAddresses", new JSONArray().put(new JSONObject().put("value", email)));
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth(accessToken);
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<String> entity = new HttpEntity<>(payload.toString(), headers);
+
+            ResponseEntity<String> patchResponse = restTemplate.exchange(updateUrl, HttpMethod.PATCH, entity, String.class);
+
+            System.out.println("Update response: " + patchResponse.getStatusCode());
+            return "redirect:/contacts";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/error";
         }
-        """.formatted(name, email);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(accessToken);
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
-
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.exchange(updateUrl, HttpMethod.PATCH, entity, String.class);
-
-        return "redirect:/contacts";
     }
+
 }
