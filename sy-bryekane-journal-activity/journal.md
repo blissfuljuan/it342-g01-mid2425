@@ -114,6 +114,12 @@ What I Learned today: I learned about the basics outlined in the assignment
 What I'm still confused about: I am still confused about the rest of the stuff in the assignment
 
 
+6/17/2025
+
+What I Learned today: Today I took the midterm exam and reviewed on it. I learned that I was not exactly fully prepared.
+
+What I'm still confused about: Why am I still so mediocre?
+
 
 ##  6/18/2025
 
@@ -130,7 +136,7 @@ What I Learned today: Today I learned about some of the flaws of my current appr
 What I'm still confused about: I get confused about how exactly to utilize all the commands, most specifically git commit and git pull when it comes to downloading files from the repository to my own computer. Also I genuinely have no clue how to 
 
 
-## Date: 06-20-2025
+## [Date: 06-20-2025]
 
 **1. What did I accomplish yesterday?**
 - I accomplished sorting out my stuff for Github and how it works and learned about System Integration and SILC.
@@ -173,5 +179,6 @@ What I'm still confused about: I get confused about how exactly to utilize all t
 
 **3. Any blockers or challenges?**
 - Myself and the earthquake drill
+
 
 (DO NOT DELETE ENTRIES, ADD MORE)
