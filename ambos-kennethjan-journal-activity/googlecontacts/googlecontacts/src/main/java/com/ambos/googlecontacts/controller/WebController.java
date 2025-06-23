@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class WebController {
@@ -38,11 +40,27 @@ public class WebController {
     public String createContact(
             @RequestParam String givenName,
             @RequestParam String familyName,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) String phoneNumber) throws IOException {
+            @RequestParam(name = "emails", required = false) List<String> emails,
+            @RequestParam(name = "phones", required = false) List<String> phones) throws IOException {
 
-        Person newContact = googleContactsService.createContact(givenName, familyName, email, phoneNumber);
-        System.out.println("Contact created: " + newContact.getResourceName());
+        List<String> validEmails = emails != null ?
+                emails.stream()
+                        .filter(e -> e != null && !e.trim().isEmpty())
+                        .collect(Collectors.toList()) :
+                Collections.emptyList();
+
+        List<String> validPhones = phones != null ?
+                phones.stream()
+                        .filter(p -> p != null && !p.trim().isEmpty())
+                        .collect(Collectors.toList()) :
+                Collections.emptyList();
+
+        googleContactsService.createContactWithEmailsAndPhones(
+                givenName,
+                familyName,
+                validEmails,
+                validPhones
+        );
 
         return "redirect:/contacts";
     }
@@ -52,17 +70,18 @@ public class WebController {
             @RequestParam String resourceName,
             @RequestParam String givenName,
             @RequestParam String familyName,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) String phoneNumber) {
+            @RequestParam(required = false) List<String> emails,
+            @RequestParam(required = false) List<String> phones) throws IOException {
 
-        try {
-            googleContactsService.updateContact(resourceName, givenName, familyName, email, phoneNumber);
-            System.out.println("Contact updated: " + resourceName);
-            return "redirect:/contacts";
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "error";
-        }
+        googleContactsService.updateContactWithEmailsAndPhones(
+                resourceName,
+                givenName,
+                familyName,
+                emails,
+                phones
+        );
+
+        return "redirect:/contacts";
     }
 
     @PostMapping("/api/contacts/delete")
