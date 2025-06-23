@@ -115,7 +115,7 @@ What I'm still confused about: I am still confused about the rest of the stuff i
 
 
 
-6/18/2025
+##  6/18/2025
 
 What I Learned today: Today I relearned UMD diagrams and used that information to contribute to the second group output as well as looked into options and alternatives for intellij.
 
@@ -123,12 +123,55 @@ What I'm still confused about: I am still confused as to how to do the assignmen
 
 
 
-6/19/2025
+## [Date: 06-19-2025]
 
 What I Learned today: Today I learned about some of the flaws of my current approach and what sync fork on github entails. I also learned how exactly to delete things (overwriting them) and learned about the various forms of System Integration and the SILC.
 
 What I'm still confused about: I get confused about how exactly to utilize all the commands, most specifically git commit and git pull when it comes to downloading files from the repository to my own computer. Also I genuinely have no clue how to 
 
 
+## Date: 06-20-2025
+
+**1. What did I accomplish yesterday?**
+- I accomplished sorting out my stuff for Github and how it works and learned about System Integration and SILC.
+
+**2. What will I do today?**
+- Work on my Google contact assignment
+
+**3. Any blockers or challenges?**
+- Lack of sources telling me how to use Access Token and lack of time during the class period
+
+## [Date: 06-21-2025]
+
+**1. What did I accomplish yesterday?**
+- I worked on my Google contact assignment and accomplished notable progress
+
+**2. What will I do today?**
+- Attempt to finish my Google contact assignment
+
+**3. Any blockers or challenges?**
+- Lack of sources and me messing it up
+
+## [Date: 06-22-2025]
+
+**1. What did I accomplish yesterday?**
+- Not much except try and fail to look for stuff.
+
+**2. What will I do today?**
+- Probably undo it the mistakes and try again.
+
+**3. Any blockers or challenges?**
+- Lack of sources, the fact I had to spend a good amount of time at my great grandfather's wake (during which family drama started up again) and lunch with the family, and me messing it up
+
+## [Date: 06-23-2025]
+
+**1. What did I accomplish yesterday?**
+- Fail to accomplish much and had my mood destroyed
+
+**2. What will I do today?**
+- Go to school and do as much as I can
+
+**3. Any blockers or challenges?**
+- Myself and the earthquake drill
 
 (DO NOT DELETE ENTRIES, ADD MORE)
