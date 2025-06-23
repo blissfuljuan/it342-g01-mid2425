@@ -40,6 +40,33 @@ Push initial changes to a new feature branch.
 Need clarification on API integration details from the team.
 Encountered an error while running the project locally (missing environment variables).
 
+**[Date: 06-23-2025]**
+1. What did I accomplish yesterday?
 
+Fixed the Google Contacts integration for contact updates.
+
+Resolved the issue where contact names were appearing as "No Name".
+
+Updated GoogleContactsService.java to correctly use givenName and displayName when adding or updating contacts.
+
+Verified that edit and update functionalities reflect changes in actual Google Contacts.
+
+2. What will I do today?
+
+Refactor and clean up the codebase (remove redundancies, improve error handling).
+
+Ensure the UI/UX is consistent across all views (add/edit/list).
+
+Implement support for additional fields (e.g., birthday, organization).
+
+Conduct end-to-end testing and push to GitHub.
+
+3. Any blockers or challenges?
+
+Still encountering occasional Whitelabel Error Page with unclear logs.
+
+Need to confirm scope for additional fields with the team.
+
+Might require adjustments for Google People API quota or permissions.
 
 
