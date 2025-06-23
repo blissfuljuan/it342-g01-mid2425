@@ -1,37 +1,261 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Google Contacts</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Contact - Google Contacts Integration</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .card {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            border: none;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .btn {
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .dynamic-field {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .field-group {
+            position: relative;
+        }
+
+        .remove-field {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #dc3545;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .remove-field:hover {
+            color: #c82333;
+        }
+    </style>
 </head>
-<body class="container mt-5">
-<h2>Google Contacts</h2>
-<a href="/user-info">Back</a>
-<table class="table table-bordered table-striped">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Emails</th>
-        <th>Phones</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="contact : ${contacts}">
-        <td th:text="${contact.name}"></td>
-        <td>
-            <ul>
-                <li th:each="email : ${contact.emails}" th:text="${email}"></li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li th:each="phone : ${contact.phones}" th:text="${phone}"></li>
-            </ul>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<a href="/logout">Logout</a>
+<body class="gradient-bg">
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h1 class="text-white mb-3">
+                    <i class="fas fa-user-plus me-2"></i>
+                    Add New Contact
+                </h1>
+                <p class="text-white-50">Create a new contact in your Google Contacts</p>
+            </div>
+
+            <!-- Main Card -->
+            <div class="card">
+                <div class="card-header bg-white py-3">
+                    <div class="d-flex align-items-center">
+                        <a href="/contacts" class="btn btn-outline-secondary me-3">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <h5 class="mb-0">
+                            <i class="fas fa-user-plus me-2 text-primary"></i>
+                            Contact Information
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="card-body p-4">
+                    <form th:action="@{/contacts/add}" method="post" th:object="${contact}">
+                        <!-- Name Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-muted mb-3">
+                                    <i class="fas fa-id-card me-2"></i>
+                                    Name Information
+                                </h6>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName"
+                                       th:field="*{firstName}" placeholder="Enter first name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName"
+                                       th:field="*{lastName}" placeholder="Enter last name">
+                            </div>
+                        </div>
+
+                        <!-- Email Section -->
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="text-muted mb-0">
+                                    <i class="fas fa-envelope me-2"></i>
+                                    Email Addresses
+                                </h6>
+                                <button type="button" class="btn btn-sm btn-outline-primary" id="addEmailBtn">
+                                    <i class="fas fa-plus me-1"></i>
+                                    Add Email
+                                </button>
+                            </div>
+                            <div id="emailFields">
+                                <div class="field-group mb-2">
+                                    <input type="email" name="emails" class="form-control"
+                                           placeholder="Enter email address">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phone Section -->
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="text-muted mb-0">
+                                    <i class="fas fa-phone me-2"></i>
+                                    Phone Numbers
+                                </h6>
+                                <button type="button" class="btn btn-sm btn-outline-primary" id="addPhoneBtn">
+                                    <i class="fas fa-plus me-1"></i>
+                                    Add Phone
+                                </button>
+                            </div>
+                            <div id="phoneFields">
+                                <div class="field-group mb-2">
+                                    <input type="tel" name="phones" class="form-control"
+                                           placeholder="Enter phone number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between pt-3">
+                            <a href="/contacts" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-2"></i>
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>
+                                Save Contact
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Help Text -->
+            <div class="text-center mt-4">
+                <p class="text-white-50 mb-0">
+                    <i class="fas fa-info-circle me-1"></i>
+                    This contact will be saved to your Google Contacts
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add Email Field
+        document.getElementById('addEmailBtn').addEventListener('click', function() {
+            const emailFields = document.getElementById('emailFields');
+            const newField = document.createElement('div');
+            newField.className = 'field-group mb-2 dynamic-field';
+            newField.innerHTML = `
+                <input type="email" name="emails" class="form-control" placeholder="Enter email address">
+                <button type="button" class="remove-field" onclick="removeField(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            emailFields.appendChild(newField);
+        });
+
+        // Add Phone Field
+        document.getElementById('addPhoneBtn').addEventListener('click', function() {
+            const phoneFields = document.getElementById('phoneFields');
+            const newField = document.createElement('div');
+            newField.className = 'field-group mb-2 dynamic-field';
+            newField.innerHTML = `
+                <input type="tel" name="phones" class="form-control" placeholder="Enter phone number">
+                <button type="button" class="remove-field" onclick="removeField(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            phoneFields.appendChild(newField);
+        });
+    });
+
+    // Remove Field Function
+    function removeField(button) {
+        const fieldGroup = button.closest('.field-group');
+        fieldGroup.style.animation = 'slideOut 0.3s ease-out';
+        setTimeout(() => {
+            fieldGroup.remove();
+        }, 300);
+    }
+
+    // Add slide out animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
 </body>
 </html>
