@@ -180,5 +180,15 @@ What I'm still confused about: I get confused about how exactly to utilize all t
 **3. Any blockers or challenges?**
 - Myself and the earthquake drill
 
+## [Date: 06-24-2025]
+**1. What did I accomplish yesterday?**
+- Made progress on the assignment due today
+
+**2. What will I do today?**
+- Download IntelliJ and work on trying to make an add and remove function after I finish the assignment
+
+**3. Any blockers or challenges?**
+- Myself, and my need to relearn ERDs and SADs.
+
 
 (DO NOT DELETE ENTRIES, ADD MORE)
