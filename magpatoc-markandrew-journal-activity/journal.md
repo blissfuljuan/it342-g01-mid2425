@@ -29,3 +29,14 @@ I'm still a bit confused about the difference between `git fetch` and `git pull`
 
 **3. Any blockers or challenges?**
 - Some parts of the lecture are a bit tricky, so I might need to touch base with the professor to clear things up.
+
+## [Date: 06-25-2025]
+
+**1. What did I accomplish yesterday?**
+- Finished reading all the required materials for class and completed the practice exercises.
+
+**2. What will I do today?**
+- Review yesterday’s lecture notes thoroughly and start working on the new assignment.
+
+**3. Any blockers or challenges?**
+- Certain concepts from the lecture are a little confusing, so I plan to reach out to the professor for clarification.
