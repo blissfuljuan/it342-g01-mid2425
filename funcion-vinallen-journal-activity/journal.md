@@ -24,7 +24,19 @@ Started working with git merge today. Got a better understanding of how it combi
 
 Also, I learned that git pull is a combination of git fetch followed by a git merge. That cleared up some confusion!
 
-## Read Me Part 1: View-Only Integration with Google Contacts
+June 23, 2025
+Continued working on my Google Contacts Viewer project. I refined the application.properties configuration for OAuth2 and made sure the People API was working properly. I also added .idea/ to .gitignore to avoid pushing unnecessary IDE files.
+Still a little unsure about how to properly clean up Git history or remove already committed files.
+
+June 24, 2025
+Learned how to remove files from version control using git rm --cached and pushed the changes to GitHub. Also updated my project with a new controller and HTML template for displaying contacts. Used git status and git log to verify my changes.
+I'm still a bit confused about when to use git reset versus git revert.
+
+June 25, 2025
+Successfully pushed my final working version of the Google Contacts Viewer project. Fixed a Thymeleaf error caused by missing fields in the Google API response. Wrote a short report and prepared everything for submission. I feel more confident now in using git add, commit, and push regularly.
+Still want to learn more about advanced Git workflows, like rebasing and cherry-picking.
+
+### Read Me Phase 1: Requirements Gathering & Analysis
 
 I created a new project in Google Cloud Console and enabled the People API.
 
@@ -46,4 +58,3 @@ I tested the app by running it locally at http://localhost:8080, authenticated w
 
 I pushed the complete source code to GitHub, took a screenshot of the contacts page, and added this short report.
 
-June 
