@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Your Google Contacts</title>
+</head>
+<body>
+
+<h1>Your Google Contacts</h1>
+
+<ul>
+    <li th:each="contact : ${contacts}">
+        <strong>Name:</strong>
+        <span th:text="${contact['names'] != null and #lists.size(contact['names']) > 0
+                        ? contact['names'][0]['displayName']
+                        : 'No Name'}">
+        </span>
+        <br>
+        <strong>Email:</strong>
+        <span th:text="${contact['emailAddresses'] != null and #lists.size(contact['emailAddresses']) > 0
+                        ? contact['emailAddresses'][0]['value']
+                        : 'No Email'}">
+        </span>
+        <hr>
+    </li>
+</ul>
+
+</body>
+</html>
