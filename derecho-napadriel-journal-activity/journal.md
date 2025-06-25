@@ -39,3 +39,33 @@ Excited to learn more.
   
 **3. Any blockers or challengers?**  
 - Cannot make a pull request.  
+
+## June 22, 2025  
+**1. What did I accomplish yesterday?**
+- None
+  
+**2. What will I do today?**  
+- None
+  
+**3. Any blockers or challengers?**  
+-  None
+
+## June 23, 2025  
+**1. What did I accomplish yesterday?**
+- None
+  
+**2. What will I do today?**  
+- None
+  
+**3. Any blockers or challengers?**  
+- None
+
+## June 24, 2025  
+**1. What did I accomplish yesterday?**
+- Researched our functional and non-functional requirements.
+  
+**2. What will I do today?**  
+- Did our System design.
+  
+**3. Any blockers or challengers?**  
+- API endpoints.
