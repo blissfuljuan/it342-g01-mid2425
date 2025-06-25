@@ -19,28 +19,40 @@ import java.util.Map;
 @Controller
 public class ContactsController {
 
-    @GetMapping("/")
-    public String home() {
-        return "index";
-    }
-
     @GetMapping("/contacts")
     public String contacts(Model model, @RegisteredOAuth2AuthorizedClient("google") OAuth2AuthorizedClient authorizedClient) {
-        String accessToken = authorizedClient.getAccessToken().getTokenValue();
+        try {
+            String accessToken = authorizedClient.getAccessToken().getTokenValue();
+            System.out.println("✅ Access Token: " + accessToken);
 
-        String url = "https://people.googleapis.com/v1/people/me/connections?personFields=names,emailAddresses";
+            String url = "https://people.googleapis.com/v1/people/me/connections?personFields=names,emailAddresses";
 
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(accessToken);
-        HttpEntity<String> entity = new HttpEntity<>(headers);
+            RestTemplate restTemplate = new RestTemplate();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth(accessToken);
+            HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
-        List<Map<String, Object>> connections = (List<Map<String, Object>>) response.getBody().get("connections");
+            ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
 
-        model.addAttribute("contacts", connections);
+            System.out.println("✅ Google API response: " + response.getBody());
+
+            Object result = response.getBody().get("connections");
+            if (result instanceof List<?> connections) {
+                model.addAttribute("contacts", connections);
+            } else {
+                model.addAttribute("contacts", List.of());
+                System.out.println("⚠️ No connections returned.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("contacts", List.of());
+        }
+
         return "contacts";
     }
+
+
 }
 
 

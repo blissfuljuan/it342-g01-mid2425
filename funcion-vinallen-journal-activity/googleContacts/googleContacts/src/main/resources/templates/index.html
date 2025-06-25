@@ -1,8 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Google Contacts App</title></head>
+<head>
+    <title>Google Contacts Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f2f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .login-btn {
+            padding: 0.75rem 2rem;
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #3367d6;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 1rem;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+    </style>
+</head>
 <body>
-<h1>Welcome to Google Contacts Viewer</h1>
-<a href="/oauth2/authorization/google">Login with Google</a>
+
+<div class="container">
+    <h1>Welcome to Google Contacts Viewer</h1>
+    <p>Click the button below to authenticate with Google and view your contacts.</p>
+    <a href="/oauth2/authorization/google">
+        <button class="login-btn">Login with Google</button>
+    </a>
+</div>
+
+<footer>Made with ❤️ by Vin Allen Funcion</footer>
+
 </body>
 </html>
+
+
