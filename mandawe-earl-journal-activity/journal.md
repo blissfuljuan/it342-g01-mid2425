@@ -56,3 +56,15 @@ no question as of now.
 
 **3. Any blockers or challenges?**
 - none.
+
+
+## June 25, 2025
+
+**1. What did I accomplish yesterday?**
+- frontend of our project.
+
+**2. What will I do today?**
+- the devirables.
+
+**3. Any blockers or challenges?**
+- none.
