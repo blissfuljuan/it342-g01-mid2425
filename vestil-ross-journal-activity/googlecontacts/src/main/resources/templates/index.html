@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Google Contacts Viewer</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+
+<h1>Welcome to Google Contacts Viewer</h1>
+<p>Click the button below to log in with Google and view your contacts.</p>
+
+<a href="/oauth2/authorization/google">
+    <button type="button">Login with Google</button>
+</a>
 
 </body>
 </html>
