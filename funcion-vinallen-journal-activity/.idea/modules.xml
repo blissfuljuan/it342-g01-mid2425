@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/funcion-vinallen-journal-activity.iml" filepath="$PROJECT_DIR$/.idea/funcion-vinallen-journal-activity.iml" />
-      <module fileurl="file://$PROJECT_DIR$/googleContacts/googleContacts/googleContacts.iml" filepath="$PROJECT_DIR$/googleContacts/googleContacts/googleContacts.iml" />
-    </modules>
-  </component>
-</project>
