@@ -46,20 +46,24 @@ Steps Taken
 
 1. Set Up Google Cloud Project
 -Created a new project in the Google Cloud Console.
+
 -Enabled the Google People API (which handles Contacts data).
 
 2. Configure OAuth 2.0 Credentials
 -Created OAuth 2.0 Client IDs for the application (Web or Desktop, depending on the app).
+
 -Configured authorized redirect URIs for OAuth callbacks.
 
 3. Implement OAuth 2.0 Authentication Flow
 -Integrated OAuth flow to obtain user consent for read-only access.
--Requested the scope: https://www.googleapis.com/auth/contacts.readonly to ensure view-only permission.
+
 
 4. Fetch Contacts Data Using People API
 -Made authenticated API requests to retrieve the user’s contacts.
+
 -Parsed and displayed contact information in the app interface.
 
 5. Testing & Validation
 -Verified that only view access is granted, no write or edit permissions available.
+
 -Tested error handling for authentication failures or permission denials.
