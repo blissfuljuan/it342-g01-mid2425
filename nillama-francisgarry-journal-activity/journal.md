@@ -70,8 +70,8 @@ retention
 
     06/25/25
 1. What did I accomplish yesterday?
- - 
+ - Created the github main repository for the final project Student Clearance System. Installed the backend startspring folder and installed Material UI for the frontend. 
 2. What will I do today?
- - 
+ - Follow up into the curd operations for google contacts
 3. Any blockers or challenges?
- - 
+ - Non subject or course related blockers so far but damn im so tired. :'(
