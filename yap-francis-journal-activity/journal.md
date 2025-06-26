@@ -67,3 +67,27 @@ Still validating that the access token works properly with the People API.
  
 Small issue with handling error states if a user cancels authorization.
 
+[Date: 06-26-2025]
+1. What did I accomplish yesterday?
+
+Finalized the frontend directory structure using React with Tailwind CSS and Vite.
+
+Verified folder structure matched system design documentation.
+
+Reviewed UI/UX screenshots and matched the login design accordingly.
+
+. What will I do today?
+
+Implement the RegisterForm.jsx and finish connecting it to the backend auth API.
+
+Begin building Dashboard.jsx for customers and LoanApplication.jsx based on the ERD and functional specs.
+
+Set up the routing structure using react-router-dom and integrate Header.jsx and Navigation.jsx.
+
+3. Any blockers or challenges?
+
+Ensuring real-time backend integration with Spring Boot due to CORS and JWT auth setup.
+
+Need more clarity on some field names for loan applications and payments in the backend API.
+
+
