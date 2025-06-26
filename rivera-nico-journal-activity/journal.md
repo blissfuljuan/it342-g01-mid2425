@@ -96,3 +96,45 @@ Fix Git issues related to committing actual files and ensure proper version cont
 
 Git shows merge conflict markers (>>>>>) but the file appears empty or cannot be opened. Unsure how to properly resolve and commit the correct file.
 
+## 📅 Date: 2025-06-24
+
+### **Seventh Entry**
+**What I learned today:**  
+Worked on a team lab session where we initialized our project repository, created branches, and collaborated on setting up the basic structure of our Spring Boot backend and React frontend.
+
+**What I'm still confused about:**  
+How to efficiently manage multiple feature branches during collaboration without frequent conflicts.
+
+---
+
+#### 🗓️ **Daily Reflection (Date: 06-24-2025)**  
+**1. What did I accomplish yesterday?**  
+- Fixed Git merge conflict issues and committed clean working files.
+
+**2. What will I do today?**  
+- Collaborate with the team to begin building the Loan Management System during the lab session.
+
+**3. Any blockers or challenges?**  
+- Minor confusion with setting up consistent project environments across machines.
+
+
+## 📅 Date: 2025-06-25
+
+### **Eighth Entry**
+**What I learned today:**  
+We took a quiz on **functional and non-functional requirements**. I reviewed how functional requirements describe *what* the system should do (e.g., login, transactions), while non-functional requirements describe *how* the system performs (e.g., performance, security).
+
+**What I'm still confused about:**  
+How to clearly categorize borderline cases—some requirements feel like they fit both categories.
+
+---
+
+#### 🗓️ **Daily Reflection (Date: 06-25-2025)**  
+**1. What did I accomplish yesterday?**  
+- Worked with the team on our project setup during the lab session.
+
+**2. What will I do today?**  
+- Take a quiz on functional and non-functional requirements and review system specification notes.
+
+**3. Any blockers or challenges?**  
+- Difficulty distinguishing between quality-related functional requirements and non-functional ones.
