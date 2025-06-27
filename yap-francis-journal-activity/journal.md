@@ -109,4 +109,17 @@ Still  Configuring  springboot and pom.xml depedencies making sure some java and
 are correct to avoid running errors..
 >>>>>>> dd84283dd183490b7c1e2d19e84961205130c48e
 
+06/27/25
+
+What did I accomplish yesterday?
+
+Started implementing MVP for the final Project
+
+What will I do today?
+
+Continue with the progress with the implementation for the final project
+
+Any blockers or challenges?
+Integrating the backend part towards the frontend without any issues which is somewhat challenging
+
 
