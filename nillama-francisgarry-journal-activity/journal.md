@@ -83,3 +83,11 @@ retention
  - Continue with the progress with the implementation
 3. Any blockers or challenges?
  - Non subject or course related blockers so far.
+
+    06/27/25
+1. What did I accomplish yesterday?
+ - Started implementing MVP for the final Project 
+2. What will I do today?
+ - Continue with the progress with the implementation for the final project
+3. Any blockers or challenges?
+ - Non subject or course related blockers so far.
