@@ -190,5 +190,34 @@ What I'm still confused about: I get confused about how exactly to utilize all t
 **3. Any blockers or challenges?**
 - Myself, and my need to relearn ERDs and SADs.
 
+## [Date: 06-25-2025]
+**1. What did I accomplish yesterday?**
+- Worked on the assignment.
+
+**2. What will I do today?**
+- Worked on the assignment
+
+**3. Any blockers or challenges?**
+- Japanese class forced me to study
+
+## [Date: 06-26-2025]
+**1. What did I accomplish yesterday?**
+- Made progress on the assignment due today
+
+**2. What will I do today?**
+- The assignment
+
+**3. Any blockers or challenges?**
+- Myself, and my need to relearn ERDs and SADs.
+
+## [Date: 06-27-2025]
+**1. What did I accomplish yesterday?**
+- Made significant progress on the assignment and completed a quiz
+
+**2. What will I do today?**
+- Finish the assignment
+
+**3. Any blockers or challenges?**
+- My Japanese class temporarily obstructed my ability to work.
 
 (DO NOT DELETE ENTRIES, ADD MORE)
