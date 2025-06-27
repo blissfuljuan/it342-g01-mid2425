@@ -60,7 +60,7 @@ retention
 3. Any blockers or challenges?
  - Needed inteliJ to avoid many dependency to install?. 
 
-    06/24/25
+   06/24/25
 1. What did I accomplish yesterday?
  - Sir, discussed yesterday about the system design, system documentation, system diagrams, and etc 
 2. What will I do today?
@@ -68,10 +68,18 @@ retention
 3. Any blockers or challenges?
  - Non so far for the discussion of the system design personally sir did a great job at discussion. 
 
-    06/25/25
+   06/25/25
 1. What did I accomplish yesterday?
  - Created the github main repository for the final project Student Clearance System. Installed the backend startspring folder and installed Material UI for the frontend. 
 2. What will I do today?
  - Follow up into the curd operations for google contacts
 3. Any blockers or challenges?
  - Non subject or course related blockers so far but damn im so tired. :'(
+
+   06/26/25
+1. What did I accomplish yesterday?
+ - We did yesterday was quiz about the Functional and Non-Functional Requirements. 
+2. What will I do today?
+ - Continue with the progress with the implementation
+3. Any blockers or challenges?
+ - Non subject or course related blockers so far.
