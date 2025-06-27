@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contact - Google Contacts</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Add New Contact</h1>
+    <form th:action="@{/contacts/add}" method="post">
+        <label>Name:</label>
+        <input type="text" name="name" required><br>
+        <label>Email:</label>
+        <input type="email" name="email"><br>
+        <label>Phone:</label>
+        <input type="text" name="phone"><br>
+        <button type="submit">Add Contact</button>
+    </form>
+    <br>
+    <a th:href="@{/contacts}">Back to Contacts</a>
+</div>
+</body>
+</html>
