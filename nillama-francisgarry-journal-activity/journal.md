@@ -91,3 +91,11 @@ retention
  - Continue with the progress with the implementation for the final project
 3. Any blockers or challenges?
  - Non subject or course related blockers so far.
+
+     06/30/25
+1. What did I accomplish yesterday?
+ - Project Checkpoint Incrementation 
+2. What will I do today?
+ - Continue with the progress with the implementation for the final project specially  my part the end implementation 
+3. Any blockers or challenges?
+ - Non subject or course related blockers so far. I need more time!
