@@ -78,3 +78,18 @@ Steps Taken
 
 **3. Any blockers or challenges?**
 - Difficulty maintaining focus due to lack of rest
+
+##[Date: 06-30-2025]
+1. What did I accomplish yesterday?
+
+-Made meaningful progress on the assignment and clarified key concepts through group discussions.
+
+2. What will I do today?
+
+-Finalize the assignment draft and review related materials to reinforce my understanding.
+
+3. Any blockers or challenges?
+
+-Feeling mentally drained; need to manage time better and take breaks to stay productive.
+
+
