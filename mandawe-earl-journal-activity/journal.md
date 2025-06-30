@@ -68,3 +68,14 @@ no question as of now.
 
 **3. Any blockers or challenges?**
 - none.
+
+## June 30, 2025
+
+**1. What did I accomplish yesterday?**
+- backend login integration and frontend of project.
+
+**2. What will I do today?**
+- checkpoint of the project.
+
+**3. Any blockers or challenges?**
+- none.
