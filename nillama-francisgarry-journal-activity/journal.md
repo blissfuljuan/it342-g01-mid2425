@@ -99,3 +99,19 @@ retention
  - Continue with the progress with the implementation for the final project specially  my part the end implementation 
 3. Any blockers or challenges?
  - Non subject or course related blockers so far. I need more time!
+
+      07/01/25
+1. What did I accomplish yesterday?
+ - Dicussion about different types of testing.
+2. What will I do today?
+ - Continue with the progress with the implementation for the final project specially my part the backend implementation 
+3. Any blockers or challenges?
+ - Non subject or course related blockers so far. I need more time! heheheh
+
+      07/02/25
+1. What did I accomplish yesterday?
+ - Continue working with the final project during lab hours.
+2. What will I do today?
+ - Continue with the progress with the implementation for the final project specially  my part the backend implementation 
+3. Any blockers or challenges?
+ - Timeconstraits :'(.
