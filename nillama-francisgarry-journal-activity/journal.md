@@ -115,3 +115,19 @@ retention
  - Continue with the progress with the implementation for the final project specially  my part the backend implementation 
 3. Any blockers or challenges?
  - Timeconstraits :'(.
+
+    07/03/25
+1. What did I accomplish yesterday?
+ - we had a quiz during lec hours about testing.
+2. What will I do today?
+ - Making up for the lack of frontend development by my teammate
+3. Any blockers or challenges?
+ - Teammate working against you feels like :'(.
+
+     07/04/25
+1. What did I accomplish yesterday?
+ - we had checkpoint for final project
+2. What will I do today?
+ - Making up for the lack of frontend development by my teammate
+3. Any blockers or challenges?
+ - Teammate working against you feels like :'(.
