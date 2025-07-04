@@ -92,4 +92,17 @@ Steps Taken
 
 -Feeling mentally drained; need to manage time better and take breaks to stay productive.
 
+## [Date: 07-04-2025] 
+1. What did I accomplish yesterday?
+
+- Completed a significant portion of the assignment and gained deeper insights through collaborative group discussions.
+
+2. What will I do today?
+
+- Finish the assignment draft and thoroughly review related topics to strengthen my understanding.
+
+3. Any blockers or challenges?
+
+- Experiencing mental fatigue; need to improve time management and schedule short breaks to maintain focus and energy.
+
 
