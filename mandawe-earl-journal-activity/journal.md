@@ -79,3 +79,14 @@ no question as of now.
 
 **3. Any blockers or challenges?**
 - none.
+
+## July 4, 2025
+
+**1. What did I accomplish yesterday?**
+- can request form and reflects on db
+
+**2. What will I do today?**
+- checkpoint of the project.
+
+**3. Any blockers or challenges?**
+- everything is.
